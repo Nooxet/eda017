@@ -12,4 +12,4 @@ INSTALL:
 - Add ~/.pt/pt.jar to CLASSPATH
 
 USE:
-Import classes in your Java project. Read doc for the import path.
+- Import classes in your Java project. Read doc for the import path.
