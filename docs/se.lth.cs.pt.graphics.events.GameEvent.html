@@ -1,0 +1,171 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av GameEvent</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>GameEvent</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.events.GameEvent;</td></tr></table><p>
+<p>Klassen <code>GameEvent</code> beskriver tre typer av händelser som
+ kan inträffa när man använder ett <a
+ href="se.lth.cs.pt.graphics.events.GraphicsWindow.html"><code>GraphicsWindow</code></a>
+ för att spela enklare spel:
+
+ <ul>
+ <li>det har gått ett bestämt stycke tid,
+ <li>användaren har gjort något med tangentbordet, eller
+ <li>användaren har gjort något med musen.
+ </ul>
+
+ För att dessa händelser skall aktiveras måste man <i>på
+ fönstret</i> anropa någon av operationerna:
+
+ <ul>
+ <li><code>void checkKeys(boolean press, boolean release,
+ boolean type)</code><br>
+ som gör att fönstret rapporterar olika slags
+ tangenthändelser,
+ <li><code>void checkMouse(boolean click, boolean press,
+ boolean release, boolean drag, boolean move)</code><br>
+ som gör att fönstret rapporterar olika slags mushändelser,
+ och
+ <li><code>void timeStep(int ms)</code><br>
+ som gör att fönstret skickar tidshändelser med bestämda
+ tidsintervall.
+ </ul>
+
+ Se dokumentationen av <a
+ href="se.lth.cs.pt.graphics.events.GraphicsWindow.html"><code>GraphicsWindow</code></a>
+ för mer information.<p>
+ 
+ Ett enkelt exempel på användande av <code>GameEvent</code> är
+ följande:
+<pre>
+    GraphicsWindow w = new GraphicsWindow(...);
+    // ...
+    w.checkKeys(true,false,false);    // testa om användaren trycker ned tangent
+    w.checkMouse(true,false,false,false,false);  // testa musklick
+    w.timeStep(50);                  // ge en tidshändelse var 50 ms (20 per sekund)
+    for (;;) {
+        GameEvent e = w.getNextEvent();
+        switch (e.getKind()) {
+        case GameEvent.TICK:
+            // Det har gått ytterligare 50 ms, uppdatera ...
+            break;
+
+        case GameEvent.KEY_PRESSED:
+            // Användaren har tryckt ner en tangent, kolla vilken:
+            if (e.getKey() == 'a') {
+                // Gör något lämpligt...
+            } else if (e.getKey() == 'b') {
+                // Gör något lämpligt...
+            }
+            break;
+
+        case GameEvent.MOUSE_CLICKED:
+            double x = e.getX();
+            double y = e.getY();
+            // Användaren har klickat i (x,y), gör något...
+        }
+    }
+</pre>
+ 
+ Egentligen borde klassen <code>GameEvent</code> varit superklass i
+ en hierarki av händelseklasser, men då hade den inte kunnat
+ användas tidigt i kursen.<p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getKind</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger typen av händelse, följande alternativ finns:
+
+     GameEvent.TICK,
+     GameEvent.KEY_PRESSED,
+     GameEvent.KEY_RELEASED,
+     GameEvent.KEY_TYPED,
+     GameEvent.MOUSE_CLICKED,
+     GameEvent.MOUSE_PRESSED,
+     GameEvent.MOUSE_RELEASED,
+     GameEvent.MOUSE_DRAGGED,
+     GameEvent.MOUSE_MOVED;</td></tr>
+<tr><td width="50"></td><td>Returnerar ett värde enligt ovan</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>char <b>getKey</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger den tangent som tryckts, om händelsen är en
+n     * tangentbordshändelse.</td></tr>
+<tr><td width="50"></td><td>Returnerar den aktuella tangenten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för händelsen, om händelsen är en
+ mushändelse.</td></tr>
+<tr><td width="50"></td><td>Returnerar x-koordinaten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger y-koordinaten för händelsen, om händelsen är en
+ mushändelse.</td></tr>
+<tr><td width="50"></td><td>Returnerar y-koordinaten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getButton</b>()</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilken musknapp som användes vid senaste händelsen, om
+ den var en mushändelse. Eftersom antalet knappar på mössen
+ varierar (från 1-3) kan man ibland behöva testa denna operation
+ för att vara säker på vilken knapp som har vilket nummer -- på
+ en mus med två knappar är i allmänhet vänster musknapp nummer 1
+ och höger musknapp nummer 3.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getKeyCode</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger tangentkoden för den tangent som tryckts, om händelsen är
+ en tangentbordshändelse. Denna operation behövs bara om vi är
+ intresserade av att använda specialtangenter som exempelvis
+ pil-tangenterna. De olika pil-tangenterna har namnen
+ <code>GameEvent.ARROW_LEFT</code>,
+ <code>GameEvent.ARROW_RIGHT</code>,
+ <code>GameEvent.ARROW_UP</code> och
+ <code>GameEvent.ARROW_DOWN</code>.</td></tr>
+<tr><td width="50"></td><td>Returnerar den aktuella tangentkoden.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>long <b>getTime</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger tidpunkten för händelsen, mätt som antalet millisekunder
+ sedan den 1 janauari 1970 (detta är ett vanligt sätt att mäta
+ tider på datorer).</td></tr>
+<tr><td width="50"></td><td>Returnerar antalet millisekunder sedan 1 januari 1970.</td></tr>
+</td></tr></table>

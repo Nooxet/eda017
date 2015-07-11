@@ -1,0 +1,70 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av KeyAdapter</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>KeyAdapter</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.listeners.KeyAdapter;</td></tr></table><p>
+<p>En 'tom' klass som implementerar interfacet
+ <code>KeyListener</code>. Genom att ärva från denna klass slipper
+ vi deklarera alla <code>KeyListener</code>-operationer om vi bara
+ är intresserad av någon enstaka av dem.</p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>KeyAdapter</b>&nbsp;&nbsp;()</code></td></tr>
+<tr><td width="50"></td><td></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyPressed</b>(KeyEvent e)</code></td></tr>
+<tr><td width="50"></td><td>Operation som anropas om en tangent trycks ner.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>e</code>:</td><td>information om tangenttryckningen.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyReleased</b>(KeyEvent e)</code></td></tr>
+<tr><td width="50"></td><td>Operation som anropas om en tangent släpps upp.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>e</code>:</td><td>information om tangenttryckningen.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyTyped</b>(KeyEvent e)</code></td></tr>
+<tr><td width="50"></td><td>Operation som anropas om en tangent trycks ner och sedan upp.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>e</code>:</td><td>information om tangenttryckningen.</td></tr>
+</table></td></tr>
+</td></tr></table>

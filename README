@@ -1,0 +1,6 @@
+EDA017 Course material
+- Including all classes and documentation
+
+INSTALLING:
+- Move pt.jar to ~/.pt/pt.jar
+- Add ~/.pt/pt.jar to CLASSPATH

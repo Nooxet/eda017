@@ -1,0 +1,134 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av DotWindow</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>DotWindow</code></b></font></td></tr><tr><td>import se.lth.cs.pt.dots.listeners.DotWindow;</td></tr></table><p>
+<p><p>Denna klass kan, förutom ritoperationerna som alla <a
+   href="se.lth.cs.pt.dots.DotWindow_.html"><code>DotWindow</code></a>-klasser
+   kan utföra, även låta olika objekt ligga och lyssna på händelser
+   som inträffar i fönstret.</p>
+
+  <p>Det finns två slags händelser:
+
+  <ul> <li><a
+    href="se.lth.cs.pt.dots.listeners.KeyEvent.html"><code>KeyEvent</code></a>,
+    som beskriver något som har inträffat på tangentbordet, och</li>
+
+    <li><a
+    href="se.lth.cs.pt.dots.listeners.MouseEvent.html"><code>MouseEvent</code></a>,
+    som beskriver något som händer med musen.</li>
+
+  </ul></p>
+
+
+<p>För att lyssna på dessa händelser har vi två olika slags lyssnare
+(båda är interfaces):
+
+<ul>
+<li><a
+ href="se.lth.cs.pt.dots.listeners.MouseListener.html"><code>MouseListener</code></a>:
+ objekt som hanterar olika musaktiviteter, och</li>
+
+ <li><a
+ href="se.lth.cs.pt.dots.listeners.KeyListener.html"><code>KeyListener</code></a>:
+ objekt som hanterar olika tangentbordsaktiviteter.</li>
+
+</ul></p>
+
+ <p>Det finns dessutom två adapter-klasser, som är 'tomma' klasser som
+ implementerar <code>MouseListener</code> respektive
+ <code>KeyListener</code>:
+
+ <ul> <li><a
+      href="se.lth.cs.pt.dots.listeners.MouseAdapter.html"><code>MouseAdapter</code></a></li>
+
+      <li><a
+      href="se.lth.cs.pt.dots.listeners.KeyAdapter.html"><code>KeyAdapter</code></a></li>
+
+    </ul>
+
+    <p>Javas ibyggda fönsterklasser (<code>swing</code>-paketet), och
+    många andra riktiga programpaket bygger på precis detta slags
+    lyssnare.</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>DotWindow</b>&nbsp;&nbsp;(int xSize, int ySize, int dotSize)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett nytt <code>DotWindow</code> med given bredd, höjd
+ och prickstorlek.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>xSize</code>:</td><td>antal prickar i x-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>ySize</code>:</td><td>antal prickar i y-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dotSize</code>:</td><td>prickarnas bredd och höjd, i pixlar.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>addMouseListener</b>(MouseListener listener)</code></td></tr>
+<tr><td width="50"></td><td>Lägger till en ny mus-lyssnare.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>listener</code>:</td><td>ett objekt som skall lyssna på mus-händelser.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>removeMouseListener</b>(MouseListener listener)</code></td></tr>
+<tr><td width="50"></td><td>Tar bort en mus-lyssnare.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>listener</code>:</td><td>det objekt som inte längre skall lyssna på
+ mus-händelser.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>addKeyListener</b>(KeyListener listener)</code></td></tr>
+<tr><td width="50"></td><td>Lägger till en ny tangentbords-lyssnare.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>listener</code>:</td><td>ett objekt som skall lyssna på
+ tangentbords-händelser.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>removeKeyListener</b>(KeyListener listener)</code></td></tr>
+<tr><td width="50"></td><td>Tar bort en tangentbords-lyssnare.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>listener</code>:</td><td>det objekt som inte längre skall lyssna på
+ tangentbords-händelser.</td></tr>
+</table></td></tr>
+</td></tr></table>

@@ -1,0 +1,82 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av StopWatch</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>StopWatch</code></b></font></td></tr><tr><td>import se.lth.cs.pt.clock.StopWatch;</td></tr></table><p>
+<p>Används för att mäta tid i program, kan mäta tider med en högsta
+ upplösning på 1 millisekund (noggrannheteten är dock inte
+ nödvändigtvis riktigt så god).<p>
+
+ Exempel på användning:
+ <pre>
+     StopWatch sw = new StopWatch();
+     sw.reset();
+     sw.start();
+     // programrader vi skall ta tiden på
+     sw.stop();
+     System.out.println("Tid: " + sw.getValue() + " ms.");</pre></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>StopWatch</b>&nbsp;&nbsp;()</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny klocka som är stoppad och nollställd.</td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>start</b>()</code></td></tr>
+<tr><td width="50"></td><td>Startar klockan, om klockan redan går händer ingenting.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>restart</b>()</code></td></tr>
+<tr><td width="50"></td><td>Startar om klockan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>stop</b>()</code></td></tr>
+<tr><td width="50"></td><td>Stoppar klockan, om klockan redan är stoppad händer ingenting.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>reset</b>()</code></td></tr>
+<tr><td width="50"></td><td>Nollställer klockan, om klockan inte är stoppad fortsätter den räkna
+ (men börjar i så fall om från 0).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getValue</b>()</code></td></tr>
+<tr><td width="50"></td><td></td></tr>
+<tr><td width="50"></td><td>Returnerar antal millisekunder som klockan räknat sedan den senast nollställdes.</td></tr>
+</td></tr></table>

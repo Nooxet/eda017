@@ -1,0 +1,102 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Rectangle</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Rectangle</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.Rectangle;</td></tr></table><p>
+<p>Beskriver en rektangel som kan ritas i ett
+ <code>GraphicsWindow</code>. Exempel på användning:</p>
+
+ <pre>
+    Color blue = Color.BLUE;
+    Color yellow = new Color(255,255,0);
+    GraphicsWindow w = new GraphicsWindow(500,500);
+    Rectangle rect = new Rectangle(150,150,40,40);
+    rect.setBorderColor(blue);
+    rect.setFillColor(yellow);
+    w.add(rect);
+ </pre>
+
+ <p>En rektangel kan utföra alla operationer som en <a
+ href="se.lth.cs.pt.graphics.Shape.html"><code>Shape</code></a> kan
+ utföra, och dessutom nedanstående:</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Rectangle</b>&nbsp;&nbsp;(double x, double y, double width, double height)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny rektangel i givna koordinater, och med given
+ storlek.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>width</code>:</td><td>bredd.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>height</code>:</td><td>höjd.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setFillColor</b>(Color color)</code></td></tr>
+<tr><td width="50"></td><td>Sätter rektangelns bakgrundsfärg.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>bakgrundsfärgen.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setBorderColor</b>(Color color)</code></td></tr>
+<tr><td width="50"></td><td>Sätter färgen på ramen runt rektangeln.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>ramfärgen.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setBorderThickness</b>(double thickness)</code></td></tr>
+<tr><td width="50"></td><td>Sätter tjockleken på ramen runt rektangeln.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>thickness</code>:</td><td>tjockleken (i pixlar).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setSize</b>(double width, double height)</code></td></tr>
+<tr><td width="50"></td><td>Ger rektangeln ny storlek.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>width</code>:</td><td>ny bredd.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>height</code>:</td><td>ny höjd.</td></tr>
+</table></td></tr>
+</td></tr></table>

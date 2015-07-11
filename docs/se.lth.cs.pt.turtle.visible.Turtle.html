@@ -1,0 +1,201 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Turtle</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Turtle</code></b></font></td></tr><tr><td>import se.lth.cs.pt.turtle.visible.Turtle;</td></tr></table><p>
+<p><p>En <code>Turtle</code> är en liten sköldpadda som kan användas för
+   att rita figurer i ett fönster. Sköldpaddorna finns i två versioner:
+
+   <ul><li><p><a href="se.lth.cs.pt.turtle.Turtle.html">Osynliga
+   sköldpaddor</a> -- syns inte på skärmen, och ritar snabbt.</p></li>
+
+   <li><p>Synliga sköldpaddor (denna klass) -- syns på skärmen, men
+   ritar betydligt långsammare.</p></li>
+
+   </ul></p>
+
+   <p>I slutet av kursen: Om du vill skriva en egen synlig
+   sköldpaddsklass kan du utvidga denna klass, och använda attributet
+   <code>sprite</code>, som är den bild som visas när sköldpaddan
+   visas (se klassen <a
+   href="se.lth.cs.pt.graphics.Sprite.html"><code>Sprite</code></a>
+   för mer information). Du kan ge <code>sprite</code> ett eget
+   startvärde genom att överskugga metoden <code>getSprite()</code>,
+   som skall returnera en referens till ett <code>Sprite</code>-objekt
+   (metoden står inte med i specifikationen nedan eftersom den är
+   <code>protected</code>-deklarerad). Tänk på att du själv
+   (förmodligen) måste vrida din bild när sköldpaddan vrider sig, och
+   att du måste flytta bilden när sköldpaddan flyttar sig.</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Turtle</b>&nbsp;&nbsp;(GraphicsWindow_ w, double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en sköldpadda i ett givet fönster.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>w</code>:</td><td>det fönster paddan skapas i.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>ursprunglig x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>ursprunglig y-koordinat.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>hide</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör sköldpaddan osynlig.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>show</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör sköldpaddan synlig.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>speedUp</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ökar farten på sköldpaddan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>speedDown</b>()</code></td></tr>
+<tr><td width="50"></td><td>Sänker farten på sköldpaddan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setSpeed</b>(int speed)</code></td></tr>
+<tr><td width="50"></td><td>Sätter farten till ett givet värde (från 1 och uppåt).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>speed</code>:</td><td>den nya farten.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>penUp</b>()</code></td></tr>
+<tr><td width="50"></td><td>Lyfter pennan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>penDown</b>()</code></td></tr>
+<tr><td width="50"></td><td>Sänker pennan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>jump</b>(double dx, double dy)</code></td></tr>
+<tr><td width="50"></td><td>Får sköldpaddan att hoppa en given sträcka - ingenting ritas
+ vid hoppet, oavsett om pennan är sänkt eller inte.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dx</code>:</td><td>hoppets längd i x-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dy</code>:</td><td>hoppets längd i y-led.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>jumpTo</b>(double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Hoppar till en ny plats i fönstret.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>ny x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>ny y-koordinat.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>left</b>(int angle)</code></td></tr>
+<tr><td width="50"></td><td>Vrider vänster.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>angle</code>:</td><td>antal grader.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>right</b>(int angle)</code></td></tr>
+<tr><td width="50"></td><td>Vrider höger.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>angle</code>:</td><td>antal grader.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>turnNorth</b>()</code></td></tr>
+<tr><td width="50"></td><td>Vrider norrut (så att den pekar uppåt på skärmen).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>forward</b>(int distance)</code></td></tr>
+<tr><td width="50"></td><td>Går framåt ett givet antal steg.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>distance</code>:</td><td>antal steg.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger sköldpaddans nuvarande x-koordinat.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger sköldpaddans nuvarande y-koordinat.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>GraphicsWindow_ <b>getWindow</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger det fönster som sköldpaddan ritas i.</td></tr>
+</td></tr></table>

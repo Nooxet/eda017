@@ -1,0 +1,375 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Keyboard</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Keyboard</code></b></font></td></tr><tr><td>import se.lth.cs.pt.io.Keyboard;</td></tr></table><p>
+<p>Med hjälp av klassen <code>Keyboard</code> kan vi läsa värden av
+ olika slag från tangentbordet. 
+
+ <pre>
+    int n = Keyboard.nextInt();              // läser in ett heltal
+    double x = Keyboard.nextDouble();        // läser in ett reellt tal
+    String word = Keyboard.next();           // läser in ett ord
+    String wholeLine = Keyboard.nextLine();  // läser in en hel rad </pre>
+
+ Dessa operationer finns även i en variant med ledtext:
+
+ <pre>
+    n = Keyboard.nextInt("Ange n: ");
+    x = Keyboard.nextDouble("Ange x: ");
+    word = Keyboard.next("Skriv in ord: ");
+    wholeLine = Keyboard.nextLine("Skriv in en rad med text: "); </pre>
+
+ Vi kan kontrollera om det finns ett värde av ett givet slag att
+ läsa innan vi försöker:
+
+ <pre>
+    System.out.print("Ange ett heltal: ");
+    if (Keyboard.hasNextInt()) {
+        System.out.println("Värdet är " + Keyboard.nextInt());
+    } else {
+        System.out.println("Det fanns inget heltal att läsa!");
+        System.out.println("Istället matade du in texten: " + Keyboard.nextLine());
+    } </pre>
+
+ Om användaren skulle mata in en sträng när vi vill läsa in ett tal
+ så kommer vi att få exekveringsfel, vi kan undvika sådana
+ exkveringsfel genom att skriva:
+
+ <pre>
+    System.out.print("Skriv in ett heltal: ");
+    while (!Keyboard.hasNextInt()) {
+        System.out.print("Du måste skriva in ett heltal, försök igen: ");
+        Keyboard.nextLine();
+    }
+    int value = Keyboard.nextInt();
+    System.out.println("Värdet är: " + value); </pre></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Klassmetoder</b></font></td>
+  </tr>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>usePTMode</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör att <code>Keyboard</code>-klassen hanterar blandad
+ inläsning av strängar och tal lite enklare än standardklassen
+ <code>Scanner</code> - gör att bland annat
+ <code>nextInt()</code>- och
+ <code>nextDouble()</code>-operationerna inte fungerar riktigt
+ som motsvarande <code>Scanner</code>-operationer. </p>
+ <p>Följande exempel visar skillnaden: Om vi i ett program först
+ vill läsa in ett heltal, och därefter en sträng, så kan vi med
+ <code>Keyboard</code>-klassen skriva:
+
+ <pre>
+    int key = Keyboard.nextInt("Ange nyckel: ");
+    String message = Keyboard.nextLine("Ange meddelande: ");</pre>
+
+ Om <code>Keyboard</code>-operationerna hade fungerat som
+ motsvarande <code>Scanner</code>-operationer så hade raderna
+ ovan inte fungerat, vi hade varit tvungna att läsa bort
+ radslutet efter inläsningen av talet först:
+ <pre>
+    Scanner scanner = new Scanner(System.in);
+    int key = scanner.nextInt("Ange nyckel: ");
+    scanner.nextLine();   // här måste vi läsa bort radslutet efter talet...
+    System.out.print("Ange meddelande: ");
+    String message = scanner.nextLine();</pre>
+
+ Om vi vill att <code>Keyboard</code>-operationerna skall fungera
+ på samma sätt som motsvarande <code>Scanner</code>-operationer
+ så måste vi någonstans i vårt program skriva
+ <code>Keyboard.useScannerMode()</code> (se nedan) - vi måste
+ därefter själva se till att läsa bort radslutet efter inläsning
+ av tal innan vi läser in en sträng. Standardinställningen gör
+ att vi slipper läsa bort radsluten själva, så du behöver inte
+ skriva <code>Keyboard.usePTMode()</code> i ditt program om du
+ inte tidigare i programmet har skrivit
+ <code>Keyboard.useScannerMode()</code>, och nu vill ändra
+ tillbaka.</p>
+
+ <p>Observera att vi fortfarande kan läsa flera tal på samma
+ rad, även om vi läser i 'pt-mode' - programmet:
+ <pre>
+     System.out.print("Skriv in 5 tal: ");
+     double sum = 0;
+     for (int i = 1; i <= 5; i++) {
+         sum += Keyboard.nextDouble();
+     }
+     System.out.println("Summan är " + sum);</pre>
+     kan köras på följande sätt:
+     <pre>
+     Skriv in 5 tal: 1 2 3 4 5
+     Summan är 15.0</pre></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>useScannerMode</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör att <code>Keyboard</code>-operationerna fungerar precis som
+ motsvarande <code>Scanner</code>-operationer (fast med
+ möjlighet att använda ledtext vid inläsning) - gör att vi kan
+ få problem när vi blandar inläsning av tal och strängar.</p>
+ <p>Denna inställning gör att vi måste läsa av radslut efter
+ inläsning av tal innan vi läser in en sträng:
+     <pre>
+    Keyboard.useScannerMode();
+    int key = Keyboard.nextInt("Ange nyckel: ");
+    Keyboard.nextLine();    // vi måste läsa in radslutet först
+    String message = Keyboard.nextLine("Ange meddelande: ");</pre>
+     </pre></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNext</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns något mer att läsa.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>String <b>next</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa sträng som kan läsas. Strängen avgränsas av
+ mellanslag, tab eller radslut.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>String <b>next</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext, och ger nästa sträng som kan
+ läsas. Strängen avgränsas av mellanslag, tab eller radslut.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtexten</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>String <b>nextLine</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa rad med text som kan läsas in.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>String <b>nextLine</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext, och ger nästa rad med text som kan läsas
+ in.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtexten</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextInt</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett heltal att läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>nextInt</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa heltal som kan läsas in.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>nextInt</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa heltal som kan läsas in.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextDouble</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett reellt tal att läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>nextDouble</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa reella tal som kan läsas in.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>nextDouble</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa reella tal som kan läsas
+ in.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextByte</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett heltal (som <code>byte</code>-värde) att
+ läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>byte <b>nextByte</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa heltal som kan läsas in (som
+ <code>byte</code>-värde).</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>byte <b>nextByte</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa heltal som kan läsas in
+ (som <code>byte</code>-värde).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextShort</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett heltal (som <code>short</code>-värde)
+ att läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>short <b>nextShort</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa heltal som kan läsas in (som
+ <code>short</code>-värde).</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>short <b>nextShort</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa heltal som kan läsas in
+ (som <code>short</code>-värde).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextLong</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett heltal (som <code>long</code>-värde) att
+ läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>long <b>nextLong</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa heltal som kan läsas in (som <code>long</code>-värde)
+ .</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>long <b>nextLong</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa heltal som kan läsas in
+ (som <code>long</code>-värde) .</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>hasNextFloat</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det finns ett reellt tal (i <code>float</code>-form)
+ att läsa in.</td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om det finns mer att läsa,
+ <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>float <b>nextFloat</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa reella tal som kan läsas in (som <code>float</code>-värde).</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>float <b>nextFloat</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext och ger nästa reella tal som kan läsas in
+ (som <code>float</code>-värde).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>String <b>nextPassword</b>(String message)</code></td></tr>
+<tr><td width="50"></td><td>Skriver ut en ledtext, och läser in en text som inte skrivs ut
+ på skärmen medan den läses in (det kan vara lämpligt om vi
+ skall mata in exempelvis lösenord). Texten består av alla
+ tecken som skrivs in fram till radslut (dvs då användaren
+ trycker på RETURN-tangenten), och texten returneras som en
+ <code>String</code>.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>message</code>:</td><td>ledtext</td></tr>
+</table></td></tr>
+</td></tr></table>

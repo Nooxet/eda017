@@ -1,0 +1,88 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av GraphicsWindow</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>GraphicsWindow</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.basic.GraphicsWindow;</td></tr></table><p>
+<p>Detta är ett slags <code>GraphicsWindow</code> som utöver de vanliga
+  <a
+  href="se.lth.cs.pt.graphics.GraphicsWindow_.html"><code>GraphicsWindow</code>-operationerna</a>
+  bara kan vänta på att användaren klickar med musen och sedan tala om
+  var klicket skedde.
+
+ <pre>
+   GraphicsWindow w = ...;
+   ...
+   w.waitForMouseClick();
+   int clickX = w.getMouseX();
+   int clickY = w.getMouseY();
+ </pre></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>GraphicsWindow</b>&nbsp;&nbsp;(double width, double height)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett fönster med en given storlek.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>width</code>:</td><td>fönstrets bredd, i pixels.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>height</code>:</td><td>fönstrets höjd, i pixels.</td></tr>
+</table></td></tr>
+</td></tr></table>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>GraphicsWindow</b>&nbsp;&nbsp;(String imageName)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett fönster med en given bakgrundsbild -- bilden måste
+ ha något av formaten ".png", ".jpg" eller ".gif".</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>imageName</code>:</td><td>namnet filen med bakgrundsbilden.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>waitForMouseClick</b>()</code></td></tr>
+<tr><td width="50"></td><td>Stoppar programmet och väntar på att användaren skall klicka
+ med musen i fönstret (man måste verkligen 'klicka' -- om man
+ trycker ner musknappen och väntar för länge innan man släpper
+ upp den igen, eller flyttar musen innan man släpper upp
+ knappen, så händer ingenting).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getMouseX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för det senaste musklick som vi väntade på.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getMouseY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger y-koordinaten för det senaste musklick som vi väntade på.</td></tr>
+</td></tr></table>

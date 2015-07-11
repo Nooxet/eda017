@@ -1,0 +1,86 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av MazeGenerator</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>MazeGenerator</code></b></font></td></tr><tr><td>import se.lth.cs.pt.maze.MazeGenerator;</td></tr></table><p>
+<p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Klassmetoder</b></font></td>
+  </tr>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int[][] <b>generate</b>(int width, int height)</code></td></tr>
+<tr><td width="50"></td><td>Genererar en matris som beskriver en labyrint. Matrisen
+ innehåller bara 0:or och 1:or, där en 1:a betyder vägg, och en
+ 0:a betyder öppen yta. Det finns en ingång (en 0:a) till
+ vänster, och en utgång (0:a) till höger, i övrigt består
+ matrisens ram av bara 1:or.</p>
+
+ En 5*5-labyrint skulle kunna se ut så här:
+     <pre>
+     1 1 1 1 1
+     0 0 1 0 0
+     1 0 1 0 1
+     1 0 0 0 1
+     1 1 1 1 1
+     </pre>
+
+ Observera att detta är en klassoperation, dvs att den anropas
+ som:
+     <pre>
+         int[][] matrix = MazeGenerator.generate(width,height);
+     </pre></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>width</code>:</td><td>labyrintens bredd (antal steg), avrundas uppåt till
+           närmaste udda heltal. Måste vara minst 5.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>height</code>:</td><td>labyrintens höjd (antal steg), avrundas uppåt till
+           närmaste udda heltal. Måste vara minst 5.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>solve</b>(int[][] maze)</code></td></tr>
+<tr><td width="50"></td><td>Tar en labyrint (i form av en heltalsmatris i samma format som
+ dem som genereras av generate-operationen) och lägger in en
+ lösning, dvs en väg från start till mål. Lösningen markeras med
+ 2:or i matrisen.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>maze</code>:</td><td>den labyrint vi skall lösa.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>solve</b>(int[][] maze, int xPos, int yPos)</code></td></tr>
+<tr><td width="50"></td><td>Tar en labyrint (i form av en heltalsmatris i samma
+ format som dem som genereras av generate-operationen) och
+ lägger in en lösning, dvs en väg från en given punkt
+ till mål. Lösningen markeras med 2:or i matrisen.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>maze</code>:</td><td>den labyrint vi skall lösa.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>xPos</code>:</td><td>startrutans x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>yPos</code>:</td><td>startrutans y-koordinat</td></tr>
+</table></td></tr>
+</td></tr></table>

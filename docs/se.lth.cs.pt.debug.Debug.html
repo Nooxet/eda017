@@ -1,0 +1,170 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Debug</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Debug</code></b></font></td></tr><tr><td>import se.lth.cs.pt.debug.Debug;</td></tr></table><p>
+<p><p>Denna klass låter oss enkelt göra testutskrifter som kan slås
+ till och från med <code>Debug.on()</code> och
+ <code>Debug.off()</code>-operationerna.</p>
+
+ Ett enkelt exempel:
+ <pre>
+     Debug.println("Detta är en debug-utskrift");
+     Debug.println("str = " + str);
+     Debug.printf("n = %d, p = %d\n", n, p);
+     ...
+     // Vi kan stänga av testutskriferna genom att skriva:
+     Debug.off();
+     Debug.println("Denna utskrift kommer inte att göras...");
+     ...
+     // Om vi åter vill slå på testutskriferna kan vi skriva:
+     Debug.on();
+     Debug.println("Nu syns testutskrifterna igen...");
+     ...
+    </pre>
+
+ <p>Testutskrifterna är automatiskt tillslagna när programmet
+ startar.</p>
+
+ <p>Poängen med klassen är att vi kan göra en massa testutskrifter
+ som vi tittar på medan vi utvecklar våra program, och sedan stänga
+ av alla utskrifter genom att bara skriva <code>Debug.off()</code> i
+ början av huvudprogrammet (vi behöver alltså inte ta bort våra
+ testutskrifter).</p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Klassmetoder</b></font></td>
+  </tr>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>on</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör att testutskriferna syns tills vi eventuellt anropar
+ <code>Debug.off()</code>.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>off</b>()</code></td></tr>
+<tr><td width="50"></td><td>Stänger av testutskriferna tills vi eventuellt anropar
+ <code>Debug.on()</code>.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setPrefix</b>(String prefix)</code></td></tr>
+<tr><td width="50"></td><td><p>Ger alla följande testutskrifter ett givet prefix, om vi
+ vill att alla testutkrifter skall börja med texten
+ <code>Testutskrift: </code> så anropar vi:
+ <pre>Debug.setPrefix("Testutskrift: ");</pre>. För att ta bort
+ prefixet skriver vi bara: <pre>Debug.setPrefix("");</pre></p></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>prefix</code>:</td><td>den text vi fill ha först i alla testutskrifter</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>usePausing</b>(boolean willPause)</code></td></tr>
+<tr><td width="50"></td><td><p>Gör det möjligt att bestämma om programmet skall vänta på
+ att användaren trycker på "Return"-tangenten efter varje
+ testutskrift.</p></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>willPause</code>:</td><td><code>true</code> om programmet skall vänta,
+ <code>false</code> annars.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>printf</b>(String pattern, Object[] arguments)</code></td></tr>
+<tr><td width="50"></td><td><p>Gör en testutskrift, fungerar ungefär som
+ <code>System.out.printf</code>-operationen, men ger bara
+ utskrifer så länge testutskriferna är tillslagna.</p>
+
+ <p>Parametrarna ovan ser lite konstiga ut (deklarationen
+ utnyttjar en finess i Java 5), vi skickar in alla värden som
+ skall skrivas ut med komma-tecken emellan, inte som en
+ <code>Object</code>-vektor. För att göra en testutskrift med
+ värdet på <i>e</i> och <i>pi</i> med 5 decimaler kan vi
+ skriva:</p> <pre> Debug.printf("e = %.5d, pi = %.5d\n",
+ Math.exp(1), Math.PI); </pre></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>pattern</code>:</td><td>formatet på det som skall skrivas ut</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>arguments</code>:</td><td>de värden som skall skrivas ut</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>print</b>(String msg)</code></td></tr>
+<tr><td width="50"></td><td>Gör en testutskrift, bryter inte till ny rad.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>msg</code>:</td><td>den text som skall skrivas ut</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>println</b>(String msg)</code></td></tr>
+<tr><td width="50"></td><td>Gör en testutskrift, bryter till ny rad efter utskriften.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>msg</code>:</td><td>den text som skall skrivas ut</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>println</b>()</code></td></tr>
+<tr><td width="50"></td><td>Bryter till ny rad på testutskrifterna.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>printTo</b>(PrintStream out)</code></td></tr>
+<tr><td width="50"></td><td>Gör att testutskrifterna hamnar på en given enhet.
+ Standardinställningen är att testutskriferna hamnar på
+ <code>System.err</code>.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>out</code>:</td><td>den utskriftsenhet vi vill styra utskrifterna till</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>printTo</b>(String filename)</code></td></tr>
+<tr><td width="50"></td><td>Gör att testutskrifterna hamnar på en fil med ett givet namn.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>filename</code>:</td><td>namnet på filen som skall innehålla testutskrifterna</td></tr>
+</table></td></tr>
+</td></tr></table>

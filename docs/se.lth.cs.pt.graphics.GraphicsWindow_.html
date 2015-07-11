@@ -1,0 +1,226 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av GraphicsWindow_</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>GraphicsWindow_</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.GraphicsWindow_;</td></tr></table><p>
+<p><em><b>Observera att du inte skall importera själva fönstret med
+ hjälp av <code>import</code>-satsen ovan, utan istället skall välja
+ någon av klasserna som beskrivs nedan</b></em> (man kan inte skapa
+ den typ av fönster som <code>import</code>-satsen ovan ger, den
+ finns där av rent tekniska skäl).</p>
+
+ <p>Ett <code>GraphicsWindow</code> är ett fönster som användaren
+ kan rita figurer i, exempelvis:
+ <pre>
+  GraphicsWindow w = new GraphicsWindow(500,500);
+  Rectangle rect = new Rectangle(250,250,50,25);
+  w.add(rect);               // lägger rektangeln i fönstret
+  rect.rotate(30);           // roterar rektangeln
+  rect.move(40,40);          // flyttar rektangeln
+  Turtle t = new Turtle(w,400,400);
+  t.left(45);                // vrider sköldpaddan
+  t.penDown();               // sänker sköldpaddans penna
+  t.forward(100);            // får sköldpaddan att gå framåt </pre>
+
+ För att importera de olika <a
+ href="se.lth.cs.pt.graphics.Shape.html">figurklasserna</a> måste man
+ skriva:
+ <pre>
+  import se.lth.cs.pt.graphics.*; </pre>
+
+ <p>Dessutom måste man importera någon av
+ <code>GraphicsWindow</code>-klasserna nedan.</p>
+
+ Det finns flera olika slags <code>GraphicsWindow</code>-klasser i
+ kurspaketet, det som skiljer dem åt är hur användaren kan styra vad
+ som händer. De har alla samma operationer för att rita saker i
+ fönstret, dessa operationer dokumenteras på denna sida -- för olika
+ sätt att hantera användarens aktiviteter får du se dokumentationen
+ av nedanstående klasser:</p>
+
+ <ul> <li><p>En klass som bara kan vänta på att användaren klickar i
+ fönstret -- denna klass ligger i <a
+ href="se.lth.cs.pt.graphics.basic.GraphicsWindow.html"><code>se.lth.cs.pt.graphics.basic</code></a>-paketet.</p></li>
+ <li><p>En klass som låter oss välja vilka händelser fönstret skall
+ lyssna på, och som kan vänta på att någon av dessa händelser skall
+ inträffa och skicka tillbaka ett särskilt händelseobjekt. Denna klass
+ ligger i <a
+ href="se.lth.cs.pt.graphics.events.GraphicsWindow.html"><code>se.lth.cs.pt.graphics.events</code></a>-paketet.</p></li>
+ <li><p>En klass som låter oss med jämna mellanrum känna av vad som
+ har hänt i fönstret sedan vi senast kollade. Denna klass ligger i <a
+ href="se.lth.cs.pt.graphics.polling.GraphicsWindow.html"><code>se.lth.cs.pt.graphics.polling</code></a>-paketet.</p></li>
+ <li><p>En klass som vi kan få att skicka meddelanden till särskilda
+ 'lyssnare' när olika händelser inträffar. Denna klass ligger i <a
+ href="se.lth.cs.pt.graphics.listeners.GraphicsWindow.html"><code>se.lth.cs.pt.graphics.listeners</code></a>-paketet.</p></li>
+ </ul></p>
+
+ <p>Operationerna nedan är alltså gemensamma för alla
+ <code>GraphicsWindow</code>-klasser.</p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>fillWith</b>(Color color)</code></td></tr>
+<tr><td width="50"></td><td>Fyller fönstret med en given färg.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>den färg vi vill fylla fönstret med.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>drawLine</b>(double x0, double y0, double x1, double y1, double lineWidth, Color color)</code></td></tr>
+<tr><td width="50"></td><td>Ritar en linje i bildens bakgrund. Linjen kan inte 'flyttas'
+ som vanliga figurer, och ritas alltid bakom eventuella figurer
+ i fönstret.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x0</code>:</td><td>x-koordinat för linjens startpunkt</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y0</code>:</td><td>y-koordinat för linjens startpunkt</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x1</code>:</td><td>x-koordinat för linjens slutpunkt</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y1</code>:</td><td>y-koordinat för linjens slutpunkt</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>lineWidth</code>:</td><td>linjens tjocklek</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>linjens färg</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getWidth</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger fönstrets bredd.</td></tr>
+<tr><td width="50"></td><td>Returnerar fönstrets bredd (i pixels).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getHeight</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger fönstrets höjd.</td></tr>
+<tr><td width="50"></td><td>Returnerar fönstrets höjd (i pixels).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>add</b>(Shape shape)</code></td></tr>
+<tr><td width="50"></td><td>Lägger in en figur i fönstret. Om figuren tidigare ritades i
+ något annat fönster så flyttas den därifrån automatiskt
+ (figurerna kan bara befinna sig på ett ställe åt gången).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>shape</code>:</td><td>figuren som skall läggas in.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>remove</b>(Shape shape)</code></td></tr>
+<tr><td width="50"></td><td>Tar bort en figur från fönstret.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>shape</code>:</td><td>figuren som skall tas bort.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>Shape <b>shapeAt</b>(double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Ger den figur, om någon, som ligger 'överst' i givna
+ koordinater.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar den figur vi eventuellt finner, <code>null</code>
+ annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>List&lt;Shape&gt; <b>getShapes</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger en lista med samtliga figurer i fönstret (listan går inte
+ att ändra).</td></tr>
+<tr><td width="50"></td><td>Returnerar listan med figurerna.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>hide</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gömmer fönstret. Fönstret syns automatiskt när det skapas, du
+ kan använda <code>hide()</code> för att temporärt gömma undan
+ fönstret om det är ivägen på skärmen (använd
+ <code>show()</code> för att visa fönstret igen).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>show</b>()</code></td></tr>
+<tr><td width="50"></td><td>Visar fönstret. Denna operation kan användas om du tidigare
+ gömt fönstret med <code>hide()</code>-operationen.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>moveTo</b>(int x, int y)</code></td></tr>
+<tr><td width="50"></td><td>Flyttar fönstrets övre vänstra hörn till givna koordinater på
+ skärmen (med 'fönstrets' övre vänstra hörn menas egentligen
+ själva innehållet i fönstret, inte menyraden).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>an den nya x-koordinaten.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>an den nya y-koordinaten.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>autoUpdate</b>(boolean status)</code></td></tr>
+<tr><td width="50"></td><td>Stänger av eller startar den automatiska uppdateringen av
+ fönstret - om den automatiska uppdateringen är frånslagen syns
+ eventuella ändringar i fönstret inte förrän operationen
+ <code>update</code> anropas.</p>
+
+ Poängen med att stänga av den automatiska uppdateringen är att
+ fönsteroperationerna kan bli mycket snabbare om man har många
+ objekt i fönstret.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>status</code>:</td><td>a <code>boolean</code> value</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>update</b>()</code></td></tr>
+<tr><td width="50"></td><td>Uppdaterar fönstret (användbart om man stängt av den
+ automatiska uppdateringen (se <code>autoUpdate</code> ovan).</td></tr>
+</td></tr></table>

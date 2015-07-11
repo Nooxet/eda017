@@ -1,0 +1,51 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av KeyEvent</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>KeyEvent</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.listeners.KeyEvent;</td></tr></table><p>
+<p>Beskriver en tangentbordshändelse.</p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>char <b>getKey</b>()</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilken tangent det handlar om (vi får tillbaka det
+ tecken som står på tangenten). Denna operation fungerar inte
+ för specialtangenter som exempelvis pil-tangenterna.</td></tr>
+<tr><td width="50"></td><td>Returnerar tecknet som står på tangenten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getKeyCode</b>()</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilken tangent det handlar om (vi får tillbaka koden
+ för tangenten, som är ett heltal). Denna operation kan vara
+ användbar om vi vill använda exempelvis pil-tangenterna.</td></tr>
+<tr><td width="50"></td><td>Returnerar koden för tangenten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>long <b>getTime</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger tidpunkten för händelsen.</td></tr>
+<tr><td width="50"></td><td>Returnerar tid mätt i millisekunder (sedan 1 januari 1970).</td></tr>
+</td></tr></table>

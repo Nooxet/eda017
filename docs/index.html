@@ -1,0 +1,504 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<title>Dokumentation av klasserna i pt-paketet</title>
+</head>
+<body>
+<h1>Dokumentation av klasserna i pt-paketet</h1>
+
+<p>Observera att kurspaketet är under utveckling, och att det därför
+  kan komma att bli en del tillägg och ändringar i denna dokumentation
+  under kursens gång. På kurshemsidan meddelas så snart en ny version
+  av kurspaketet finns att ladda hem (både jar-fil och
+  dokumentation).</p>
+
+<p>Klasserna i kurspaketet är uppdelade i olika mindre paket
+  (<code>se.lth.cs.pt.io</code>, <code>se.lth.cs.pt.turtle</code>,
+  etc), och det finns exempel på klassnamn som förekommer i flera
+  sammanhang (exempelvis <code>Color</code> som används både
+  till <code>GraphicsWindow</code> och <code>DotWindow</code>, men som
+  ser lite olika ut beroende på i vilket sammanhang klassen används).
+  Dessutom har vi flera olika slags
+  <code>GraphicsWindow</code>- och <code>DotWindow</code>-klasser. Du
+  måste därför titta noga efter att du läser dokumentationen av rätt
+  version av dessa klasser.</p>
+
+<p>Klasserna finns sammanfattade i sina användningsområden längre ner
+  på sidan, men först en lista med samtliga klasser i
+  bokstavsordning:</p>
+
+<h2>Klasserna i bokstavsordning</h2>
+
+<ul>
+<li><a href="se.lth.cs.pt.util.CSMath.html"><code>CSMath</code></a>:
+  En klass med några hjälpmetoder som kan vara användbara ibland (och
+  som inte finns i standardklassen <code>Math</code>).</li>
+
+<li><a href="se.lth.cs.pt.clock.Clock.html"><code>Clock</code></a>: En
+  klocka som vi kan använda för att pausa våra program.</li>
+
+<li><a href="se.lth.cs.pt.dots.Color.html"><code>Color</code></a>:
+  Färger som kan ritas i
+  ett <a href="se.lth.cs.pt.dots.basic.DotWindow.html"><code>DotWindow</code></a>
+  (se nedan).</li>
+
+<li><a href="se.lth.cs.pt.graphics.Color.html"><code>Color</code></a>:
+  Färger som kan ritas i
+  ett <a href="se.lth.cs.pt.graphics.basic.GraphicsWindow.html"><code>GraphicsWindow</code></a> (se nedan).</li>
+
+<li><a href="se.lth.cs.pt.debug.Debug.html"><code>Debug</code></a>: En
+  klass som vi kan använda för att göra enkla testutskrifter.</li>
+
+<li><a href="se.lth.cs.pt.die.Die.html"><code>Die</code></a>: Den
+  tärningsklass som beskrivs i kompendiet.</li>
+
+<li><a href="se.lth.cs.pt.dots.basic.DotWindow.html"><code>DotWindow</code></a>:
+  Den enklaste formen av <code>DotWindow</code> (se även de tre
+  varianterna nedan).</li>
+
+<li><a href="se.lth.cs.pt.dots.events.DotWindow.html"><code>DotWindow</code></a>:
+  Ett slags <code>DotWindow</code> som låter oss vänta på olika slags
+  händelser.</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.DotWindow.html"><code>DotWindow</code></a>:
+  Ett slags <code>DotWindow</code> som låter oss använda så kallade
+  'listeners' (se kompendiet).</li>
+
+<li><a href="se.lth.cs.pt.dots.polling.DotWindow.html"><code>DotWindow</code></a>:
+  Ett slags <code>DotWindow</code> som låter oss testa vad som har
+  hänt sedan vi senast testade.</li>
+
+<li><a href="se.lth.cs.pt.dots.DotWindow_.html"><code>DotWindow_</code></a>:
+  En klass som innehåller alla de metoder som alla varianterna
+  av <code>DotWindow</code> har (du skall antagligen inte skapa något
+  objekt av denna klass, utan av någon av de fyra varianterna
+  ovan).</li>
+
+<li><a href="se.lth.cs.pt.event.Event.html"><code>Event</code></a>: En
+  slags händelse (överkurs, men beskrivs i kompendiet).</li>
+
+<li><a href="se.lth.cs.pt.dots.events.GameEvent.html"><code>GameEvent</code></a>:
+  En händelse i ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.events.GameEvent.html"><code>GameEvent</code></a>:
+  En händelse i ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.game.dots.GameTemplate.html"><code>GameTemplate</code></a>:
+  En klass med 'tomma' metoder för ett händelsestyrt spel i
+  ett <code>DotWindow</code> - denna klass kan utvidgas till ett
+  riktigt program.</li>
+
+<li><a href="se.lth.cs.pt.game.graphics.GameTemplate.html"><code>GameTemplate</code></a>:
+  En klass med 'tomma' metoder för ett händelsestyrt spel i
+  ett <code>GraphicsWindow</code> - denna klass kan utvidgas till ett
+  riktigt program.</li>
+
+<li><a href="se.lth.cs.pt.graphics.basic.GraphicsWindow.html"><code>GraphicsWindow</code></a>:
+  Den enklaste formen av <code>GraphicsWindow</code> (se även de tre
+  varianterna nedan).</li>
+
+<li><a href="se.lth.cs.pt.graphics.events.GraphicsWindow.html"><code>GraphicsWindow</code>:
+    Ett slags <code>GraphicsWindow</code> som låter oss vänta på olika
+    slags händelser.</a></li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.GraphicsWindow.html"><code>GraphicsWindow</code></a>:
+  En slags <code>GraphicsWindow</code> som låter oss använda så
+  kallade 'listeners' (se komendiet).</li>
+
+<li><a href="se.lth.cs.pt.graphics.polling.GraphicsWindow.html"><code>GraphicsWindow</code></a>:
+  En slags <code>GraphicsWindow</code> som låter oss testa vad som har
+  hänt sedan vi senast testade.</li>
+
+<li><a href="se.lth.cs.pt.graphics.GraphicsWindow_.html"><code>GraphicsWindow_</code></a>:
+  En klass som innehåller alla de metoder som alla varianterna
+  av <code>GraphicsWindow</code> har (du skall antagligen inte skapa
+  något objekt av denna klass, utan av någon av de fyra varianterna
+  ovan).</li>
+
+<li><a href="se.lth.cs.pt.dots.Grayscale.html"><code>Grayscale</code></a>:
+  En gråskalefärg som akn användas i ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.io.IO.html"><code>IO</code></a>: En klass
+  med olika metoder för in- och utmatning.</li>
+
+<li><a href="se.lth.cs.pt.util.ImageReader.html"><code>ImageReader</code></a>:
+  Hämtar bilder från filer med givna namn.</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.KeyAdapter.html"><code>KeyAdapter</code></a>:
+  Ett objekt som lyssnar på alla slags tangentbordshändelser i
+  ett <code>DotWindow</code>, men inte gör något åt dem (du kan
+  överskugga någon/några av dess metoder).</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.KeyAdapter.html"><code>KeyAdapter</code></a>:
+  Ett objekt som lyssnar på alla slags tangentbordshändelser i
+  ett <code>GraphicsWindow</code>, men inte gör något åt dem (du kan
+  överskugga någon/några av dess metoder).</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.KeyEvent.html"><code>KeyEvent</code></a>:
+  En tangentbordshändelse i ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.KeyEvent.html"><code>KeyEvent</code></a>:
+  En tangentbordshändelse i ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.KeyListener.html"><code>KeyListener</code></a>:
+  Ett interface för objekt om lyssnar på tangentbordshändelser i
+  ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.KeyListener.html"><code>KeyListener</code></a>:
+  Ett interface för objekt om lyssnar på tangentbordshändelser i
+  ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.io.Keyboard.html"><code>Keyboard</code></a>:
+  En klass för att läsa in värden från tangentborde.</li>
+
+<li><a href="se.lth.cs.pt.maze.MazeGenerator.html"><code>MazeGenerator</code></a>:
+  Genererar labyrinter (för inlämningsuppgift 4).</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.MouseAdapter.html"><code>MouseAdapter</code></a>:
+  Ett objekt som lyssnar på alla slags mushändelser i
+  ett <code>DotWindow</code>, men inte gör något åt dem (du kan
+  överskugga någon/några av dess metoder).</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.MouseAdapter.html"><code>MouseAdapter</code>:
+  Ett objekt som lyssnar på alla slags mushändelser i
+  ett <code>GraphicsWindow</code>, men inte gör något åt dem (du kan
+  överskugga någon/några av dess metoder).</a></li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.MouseEvent.html"><code>MouseEvent</code></a>:
+  En mushändelse i ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.MouseEvent.html"><code>MouseEvent</code></a>:
+  En mushändelse i ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.dots.listeners.MouseListener.html"><code>MouseListener</code></a>:
+  Ett interface för objekt om lyssnar på mushändelser i
+  ett <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.listeners.MouseListener.html"><code>MouseListener</code></a>:
+  Ett interface för objekt om lyssnar på mushändelser i
+  ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.Oval.html"><code>Oval</code></a>:
+  En oval som kan ritas i ett <code>GraphicsWindow</code></li>
+
+<li><a href="se.lth.cs.pt.util.PTCollections.html"><code>PTCollections</code></a>:
+En klass med ett antal klassoperationer för att skapa tomma listor och
+mängder.</li>
+
+<li><a href="se.lth.cs.pt.net.PTSocket.html"><code>PTSocket</code></a>:
+  En klass för att låta program kommunicera mellan datorer.</li>
+
+<li><a href="se.lth.cs.pt.walk.Path.html"><code>Path</code></a>: Ett
+fönster med stenar, som en gubbe kan hoppa på (för övningsuppgift i
+kompendiet).</li>
+
+<li><a href="se.lth.cs.pt.graphics.Rectangle.html"><code>Rectangle</code></a>:
+  En rektangel som kan ritas i ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.Shape.html"><code>Shape</code></a>:
+  En klass med de metoder som alla figurer
+  (<code>Oval</code>, <code>Rectangle</code>, <code>Sprite</code>
+  och <code>Text</code> kan utföra).</li>
+
+<li><a href="se.lth.cs.pt.graphics.Sprite.html"><code>Sprite</code></a>:
+  En liten figur (från en .png- eller .jpg-bild) som kan flyttas runt
+  i ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.dots.polling.State.html"><code>State</code></a>:
+  Ett objekt som visar vad som hänt sedan vi senast testade vad som
+  har hänt i ett givet <code>DotWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.graphics.polling.State.html"><code>State</code></a>:
+  Ett objekt som visar vad som hänt sedan vi senast testade vad som
+  har hänt i ett givet <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.clock.StopWatch.html"><code>StopWatch</code></a>:
+  Ett stoppur som kan användas för att mäta hur lång tid våra program
+  använder för att göra olika saker.</li>
+
+<li><a href="se.lth.cs.pt.graphics.Text.html"><code>Text</code></a>:
+  Ett text-objekt som kan flyttas runt i
+  ett <code>GraphicsWindow</code>.</li>
+
+<li><a href="se.lth.cs.pt.timer.TimeListener.html"><code>TimeListener</code></a>:
+  Ett gränssnitt för objekt som observerar när tiden går.</li>
+
+<li><a href="se.lth.cs.pt.timer.Timer.html"><code>Timer</code></a>:
+  Ett objekt som gör det möjligt att få programmet att göra saker med
+  bestämda tidsintervaller.</li>
+
+<li><a href="se.lth.cs.pt.turtle.Turtle.html"><code>Turtle</code></a>:
+  En osynlig sköldpadda.</li>
+
+<li><a href="se.lth.cs.pt.turtle.visible.Turtle.html"><code>Turtle</code></a>:
+  En synlig sköldpadda.</li>
+
+</ul>  
+
+
+<h2>En sammanställning av olika delpaket</h2>
+
+<h3>In och utmatning</h3>
+
+<ul>
+
+  <li><a
+  href="se.lth.cs.pt.io.Keyboard.html"><code>Keyboard</code></a>: En
+  klass som låter oss läsa från tangentbordet på ett enkelt sätt.</li>
+
+  <li><a href="se.lth.cs.pt.io.IO.html"><code>IO</code></a>: Denna
+  klass gör det enkelt för oss att skapa olika in- och
+  utmatningsenheter.</li>
+
+  <li><a
+  href="se.lth.cs.pt.util.ImageReader.html"><code>ImageReader</code></a>:
+  Underlättar inläsning av bilder från filer.</li> </ul>
+
+
+<h3><code>GraphicsWindow</code>-klassen</h3>
+
+<p>I ett <code>GraphicsWindow</code> kan vi rita
+
+<ul>
+
+  <li><p><a href="#turtle">sköldpaddor</a> (se nedan), och</p></li>
+
+  <li><p><a href="#shapes">olika slags figurer</a> (se
+  nedan).</p></li>
+
+</ul></p>
+
+<p>Det finns fyra olika slags <code>GraphicsWindow</code> som vi kan
+använda för våra sköldpaddor och figurer, de har alla ett antal
+operationer som beskrivs <a
+href="se.lth.cs.pt.graphics.GraphicsWindow_.html">här</a>. De fyra
+alternativa fönsterklasserna är:
+
+<ul>
+
+  <li><p><a
+  href="se.lth.cs.pt.graphics.basic.GraphicsWindow.html">Primitiva
+  fönster</a>: Detta är den enklaste varianten, och de har förutom <a
+  href="se.lth.cs.pt.graphics.GraphicsWindow_.html">de vanliga
+  fönsteroperationerna</a> bara operationer för att stanna programmet
+  och vänta på att användaren klickar med musen (se <a
+  href="se.lth.cs.pt.graphics.basic.GraphicsWindow.html">här</a>). Vi
+  importerar dessa fönster med:
+  
+<pre>
+import se.lth.cs.pt.graphics.basic.GraphicsWindow;
+</pre></p></li>
+
+  <li><p><a
+  href="se.lth.cs.pt.graphics.polling.GraphicsWindow.html">Fönster med
+  polling</a>: I dessa fönster kan vi förutom att använda <a
+  href="se.lth.cs.pt.graphics.GraphicsWindow_.html">de vanliga
+  fönsteroperationerna</a> även undersöka vad användaren har gjort
+  sedan vi senast tittade efter (se <a
+  href="se.lth.cs.pt.graphics.polling.GraphicsWindow.html">här</a>). Dessa
+  fönster importerar vi med:
+  
+<pre>
+import se.lth.cs.pt.graphics.polling.GraphicsWindow;
+</pre></p></li>
+
+  <li><p><a
+  href="se.lth.cs.pt.graphics.events.GraphicsWindow.html">Fönster med
+  händelser</a>: Dessa fönster kan vi få att lyssna på olika slags
+  händelser, och vi kan sedan fråga fönstret efter alla nya
+  händelser. Vi kan dessutom utföra <a
+  href="se.lth.cs.pt.graphics.GraphicsWindow_.html">de vanliga
+  fönsteroperationerna</a>. Vi importerar dessa fönster med:
+  
+<pre>
+import se.lth.cs.pt.graphics.events.GraphicsWindow;
+</pre></p></li>
+
+  <li><p><a
+  href="se.lth.cs.pt.graphics.listeners.GraphicsWindow.html">Fönster
+  med lyssnare</a>: Till detta slags fönster kan vi koppla olika slags
+  lyssnare -- så snart olika händelser inträffar anropas bestämda
+  operationer i våra lyssnare. Vi kan dessutom utföra <a
+  href="se.lth.cs.pt.graphics.GraphicsWindow_.html">de vanliga
+  fönsteroperationerna</a>. Vi importerar dessa fönster med:
+  
+<pre>
+import se.lth.cs.pt.graphics.listeners.GraphicsWindow;
+</pre></p></li>
+
+</ul>
+
+
+<a name="turtles">
+<h3><code>Turtle</code>-klasser</h3>
+
+<p>Det finns två <code>Turtle</code>-klasser, de har ungefär samma
+  operationer -- den största skillnaden är att den ena klassen ger
+  sköldpaddor som syns i fönstret. För att importera den osynliga
+  sköldpaddan skriver man:
+  <pre>
+    import se.lth.cs.pt.turtle.Turtle;
+  </pre>
+  och för att få den synliga varianten skriver man istället:
+  <pre>
+    import se.lth.cs.pt.turtle.visible.Turtle;
+  </pre></p>
+
+<ul>
+  <li><a href="se.lth.cs.pt.turtle.Turtle.html"><code>Turtle</code></a>
+      - osynlig
+      </li>
+  <li><a href="se.lth.cs.pt.turtle.visible.Turtle.html"><code>Turtle</code></a>
+      - synlig
+      </li>
+</ul>
+
+<a name="shapes">
+<h3>Färger och figurer</h3>
+
+Det finns ett antal operationer som samtliga figur-klasser kan utföra,
+de beskrivs i klassen <code>Shape</code> nedan, övriga operationer
+beskrivs i respektive figurklass.</p>
+
+<ul>
+
+  <li><a
+  href="se.lth.cs.pt.graphics.Color.html"><code>Color</code></a> --
+  beskriver de färger som vi kan rita i ett fönster.</li>
+
+  <li><a href="se.lth.cs.pt.graphics.Shape.html"><code>Shape</code></a>
+  (operationer som är gemensamma för samtliga figurklasser)</li>
+  <ul>
+    <li><a href="se.lth.cs.pt.graphics.Rectangle.html"><code>Rectangle</code></a></li>
+    <li><a href="se.lth.cs.pt.graphics.Oval.html"><code>Oval</code></a></li>
+    <li><a
+    href="se.lth.cs.pt.graphics.Text.html"><code>Text</code></a></li>
+    <li><a href="se.lth.cs.pt.graphics.Sprite.html"><code>Sprite</code></a></li>
+  </ul>
+
+</ul>
+
+
+
+<h3><code>DotWindow</code>-relaterade klasser</h3>
+
+<ul> 
+
+  <li><a
+  href="se.lth.cs.pt.dots.DotWindow_.html"><code>DotWindow</code></a>
+  -- själva fönstret som vi ritar i. Det finns fyra olika slags
+  <code>DotWindow</code>-klasser, det som skiljer dem åt är att de
+  låter oss hantera användarens aktiviteter på olika sätt.</li>
+
+  <li><a href="se.lth.cs.pt.dots.Color.html"><code>Color</code></a> --
+  beskriver de färger som vi kan rita i ett fönster.</li>
+
+</ul>
+
+<h3>Template-klasser för spelprogram</h3>
+
+<p>Nedanstående två klasser 'kapslar in' en händelseloop, så att du
+  enkelt kan skriva spelprogram i ett <code>GraphicsWindow</code>
+  eller i ett <code>DotWindow</code>.</p>
+
+<ul>
+  <li><a href="se.lth.cs.pt.game.graphics.GameTemplate.html"><code>GameTemplate</code>
+      (för <code>GraphicsWindow</code>)</a></li>
+  <li><a href="se.lth.cs.pt.game.dots.GameTemplate.html"><code>GameTemplate</code>
+      (för <code>DotWindow</code>)</a></li>
+</ul>
+
+
+<h3>Tidtagning och händelser</h3>
+
+<ul>
+
+  <li><a href="se.lth.cs.pt.clock.Clock.html"><code>Clock</code></a>:
+  En klocka som vi kan använda för att stoppa programmet under en
+  given tidsrymd.</li>
+
+  <li><a href="se.lth.cs.pt.clock.StopWatch.html"><code>StopWatch</code></a>, kan
+       användas för att ta tiden på ditt program.</li>
+
+  <li><a href="se.lth.cs.pt.event.Event.html"><code>Event</code></a>:
+  En slags händelse som vi kan utnyttja när vi använder de
+  'listener'-baserade fönsterklasserna.</li>
+
+  <li><a href="se.lth.cs.pt.timer.TimeListener.html"><code>TimeListener</code></a></li>
+
+  <li><a href="se.lth.cs.pt.timer.Timer.html"><code>Timer</code></a></li>
+
+</ul>
+
+
+
+<h3>Diverse övriga klasser</h3>
+
+<ul>
+
+  <li><a href="se.lth.cs.pt.util.CSMath.html"><code>CSMath</code></a>:
+  diverse hjälpoperationer.</li>
+
+  <li><a href="se.lth.cs.pt.die.Die.html"><code>Die</code></a>:
+  vanliga speltärningar.</li>
+
+  <li><a href="se.lth.cs.pt.maze.MazeGenerator.html"><code>MazeGenerator</code></a>,
+       som kan användas för att generera matriser som beskriver
+       labyrinter (används i labyrint-alternativet på
+       inlämningsuppgift 4).
+
+  <li><a href="se.lth.cs.pt.walk.Path.html"><code>Path</code></a>,
+       ritar en gubbe som hoppar på stenar i ett fönster.
+
+</ul>
+
+
+
+<h2>ACM:s klasspaket</h2><a name="acmJTF">
+
+<p>Dokumentation av ACM:s klasspaket för inledande Java-kurser finns
+<a href="http://jtf.acm.org/javadoc/student/index.html">här</a>.</p>
+
+
+
+<h2>Javas standardklasser</h2><a name="javaStandard">
+
+<p>Javas standardpaket (som innehåller några av de klasser som vi
+använder i kursen) finns dokumenterat på Javas <a
+href="http://java.sun.com/javase/6/docs/api/overview-summary.html">dokumentationshemsida</a>.</p>
+
+<p>Nedan finns direktlänkar till några av de klasser vi använder i kursen:</p>
+
+<ul>
+<li><a
+     href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html"><code>Math</code></a>
+     innehåller ett antal användbara matematiska funktioner.</li>
+
+<li><a
+     href="http://java.sun.com/javase/6/docs/api/java/util/Random.html"><code>Random</code></a>
+     ger olika slags slumptal.</li>
+
+     <li><a
+     href="http://java.sun.com/javase/6/docs/api/java/util/Scanner.html"><code>Scanner</code></a>,
+     som används för att läsa in värden från tangentbord eller
+     fil.</li>
+
+     <li><a
+     href="http://java.sun.com/javase/6/docs/api/java/lang/String.html"><code>String</code></a>,
+     som beskriver en sträng.</li>
+
+     <li><a
+     href="http://java.sun.com/javase/6/docs/api/java/lang/StringBuilder.html"><code>StringBuilder</code></a>,
+     som kan användas för att bygga upp en sträng
+     (<code>String</code>-objekt är oföränderliga).</li>
+
+     <li><a
+     href="http://java.sun.com/javase/6/docs/api/java/util/StringTokenizer.html"><code>StringTokenizer</code></a>,
+     som kan användas för att dela upp en sträng i delsträngar.</li>
+
+</ul>
+
+
+</body>
+</html>

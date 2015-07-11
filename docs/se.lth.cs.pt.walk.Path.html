@@ -1,0 +1,83 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Path</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Path</code></b></font></td></tr><tr><td>import se.lth.cs.pt.walk.Path;</td></tr></table><p>
+<p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Path</b>&nbsp;&nbsp;(int nbrOfStones)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett fönster med stenar.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>nbrOfStones</code>:</td><td>antalet stenar (5 <= antal stenar <= 20).</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>clear</b>()</code></td></tr>
+<tr><td width="50"></td><td>Rensar fönstret (visar bara stenarna).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>drawMan</b>(int pos)</code></td></tr>
+<tr><td width="50"></td><td>Visar en gubbe på en given sten.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>pos</code>:</td><td>numret på den sten gubben står på (0..antal stenar-1).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>drawManInWater</b>(int pos)</code></td></tr>
+<tr><td width="50"></td><td>Ritar gubben i vattnet nedanför en given sten.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>pos</code>:</td><td>numret på den sten gubben står nedanför (0..antal stenar-1).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getNbrOfStones</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger antalet stenar i fönstret.</td></tr>
+<tr><td width="50"></td><td>Returnerar antalet stenar.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>length</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger längden (dvs antalet stenar).</td></tr>
+<tr><td width="50"></td><td>Returnerar antalet stenar.</td></tr>
+</td></tr></table>

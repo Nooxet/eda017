@@ -1,0 +1,94 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av State</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>State</code></b></font></td></tr><tr><td>import se.lth.cs.pt.dots.polling.State;</td></tr></table><p>
+<p><p>Denna klass används för att se vad som har hänt i ett fönster sedan
+   vi senast undersökte det. Ett typiskt sätt att använda det är:</p>
+
+ <pre>
+   DotWindow w = new DotWindow(...);
+   Clock clock = new Clock();
+   int x = ...;
+   int y = ...;
+   while (...) {
+       clock.pause(...);
+       State state = w.getState();
+       if (state.isMouseClicked()) {
+           x = state.getMouseX();
+           y = state.getMouseY();
+       }
+       if (state.isKeyPressed('q')) {
+           break;
+       }
+   }</pre>
+
+   <p>Varje nytt anrop av <code>getState()</code> på ett fönster ger
+   ett <code>State</code>-objekt med händelserna sedan föregående
+   <code>getState()</code>-anrop.</p>
+
+   <p>Detta sätt att hantera händelser påminner om hur man gör i så
+   kallade 'midlets' (mobiltelefonprogram).</p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>isKeyPressed</b>(char ch)</code></td></tr>
+<tr><td width="50"></td><td>Avgör om en given tangent har tryckts ned.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>ch</code>:</td><td>a <code>char</code> value</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar a <code>boolean</code> value</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>isKeyCodePressed</b>(int code)</code></td></tr>
+<tr><td width="50"></td><td>Avgör om en given tangentkod har tryckts ned.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>code</code>:</td><td>an <code>int</code> value</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar a <code>boolean</code> value</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>isMouseClicked</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om användaren har klickat med musen.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getMouseX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för ett eventuellt musklick.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getMouseY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för ett eventuellt musklick.
+p     *</td></tr>
+</td></tr></table>

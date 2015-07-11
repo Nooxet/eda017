@@ -1,0 +1,182 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av DotWindow_</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>DotWindow_</code></b></font></td></tr><tr><td>import se.lth.cs.pt.dots.DotWindow_;</td></tr></table><p>
+<p><em><b>Observera att du inte skall importera själva fönstret med
+   hjälp av <code>import</code>-satsen ovan, utan istället skall välja
+   någon av klasserna som beskrivs nedan</b></em> (man kan inte skapa
+   den typ av fönster som <code>import</code>-satsen ovan ger, den
+   finns där av rent tekniska skäl).</p>
+
+   Ett <code>DotWindow</code> är ett fönster i vilket användaren kan
+   rita ut 'punkter' (dots) i olika färger (se klasserna <a
+   href="se.lth.cs.pt.dots.Color.html"><code>Color</code></a> och <a
+   href="se.lth.cs.pt.dots.Grayscale.html"><code>Grayscale</code></a>).
+   Punkternas storlek bestäms när fönstret skapas, som minst kan
+   punkterna vara lika små som skärmens pixlar.<p>
+
+   <p>Exempel på användning:</p>
+
+<pre>
+  Color linen = new Color(250, 240, 230);
+  Color navy = new Color(0, 0, 128);
+  Color gold = new Color(255, 215, 0);
+  DotWindow w = new DotWindow(40, 40, 10);
+  w.fillWith(linen);
+  w.setDot(10, 10, navy);
+  for (int x = 0; x < w.getWidth(); x++) {
+      w.setDot(x, 5, gold);
+  }</pre>
+
+  <p>Det finns flera olika slags <code>DotWindow</code>-klasser i
+  kurspaketet, det som skiljer dem åt är hur användaren kan styra vad
+  som händer. De har alla samma operationer för att rita saker i
+  fönstret, dessa operationer dokumenteras på denna sida -- för olika
+  sätt att hantera användarens aktiviteter får du se dokumentationen
+  av nedanstående klasser:</p>
+
+ <ul>
+
+ <li><p>En klass som bara kan vänta på att användaren klickar i
+ fönstret -- denna klass ligger i <a
+ href="se.lth.cs.pt.dots.basic.DotWindow.html"><code>se.lth.cs.pt.dots.basic</code></a>-paketet.</p></li>
+
+ <li><p>En klass som låter oss välja vilka händelser fönstret skall
+ lyssna på, och som kan vänta på att någon av dessa händelser skall
+ inträffa och skicka tillbaka ett särskilt händelseobjekt. Denna klass
+ ligger i <a
+ href="se.lth.cs.pt.dots.events.DotWindow.html"><code>se.lth.cs.pt.dots.events</code></a>-paketet.</p></li>
+
+ <li><p>En klass som låter oss med jämna mellanrum känna av vad som
+ har hänt i fönstret sedan vi senast kollade. Denna klass ligger i <a
+ href="se.lth.cs.pt.dots.polling.DotWindow.html"><code>se.lth.cs.pt.dots.polling</code></a>-paketet.</p></li>
+
+ <li><p>En klass som vi kan få att skicka meddelanden till särskilda
+ 'lyssnare' när olika händelser inträffar. Denna klass ligger i <a
+ href="se.lth.cs.pt.dots.listeners.DotWindow.html"><code>se.lth.cs.pt.dots.listeners</code></a>-paketet.</p></li>
+
+  </ul></p>
+
+  <p>Operationerna nedan är alltså gemensamma för alla
+  <code>DotWindow</code>-klasser.</p></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>fillWith</b>(Color color)</code></td></tr>
+<tr><td width="50"></td><td>Fyller fönstret med en given färg.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>den färg fönstret skall få.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setDot</b>(int x, int y, Color color)</code></td></tr>
+<tr><td width="50"></td><td>Sätter ut en prick i given färg, på ett givet ställe i fönstret.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>prickens x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>prickens y-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>den färg pricken skall ha (se klassen <a
+ href="se.lth.cs.pt.dots.Color.html"><code>Color</code></a>).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>Color <b>getDot</b>(int x, int y)</code></td></tr>
+<tr><td width="50"></td><td>Ger färgen på en prick med givna koordinater (se klassen <a
+ href="se.lth.cs.pt.dots.Color.html"><code>Color</code></a>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>prickens x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>prickens y-koordinat</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getWidth</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger antalet prickar i x-led.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getHeight</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger antalet prickar i y-led.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getDotSize</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger storleken på prickarna (i pixlar).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>useCircularDots</b>(Color backgroundColor)</code></td></tr>
+<tr><td width="50"></td><td>Får fönstret att rita cirkulära prickar (istället för
+ kvadratiska, som är standard).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>backgroundColor</code>:</td><td>den färg som ritas bakom prickarnas kanter</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>useRectangularDots</b>()</code></td></tr>
+<tr><td width="50"></td><td>Får fönstret att åter rita kvadratiska prickar.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setAutoUpdate</b>(boolean update)</code></td></tr>
+<tr><td width="50"></td><td>Slår på eller stänger av automatisk uppdatering av
+ fönstret. Varje omritning av fönstret är ganska tidskrävande,
+ så om vi vill göra många <code>setDot</code>-operationer på en
+ gång kan det vara bra att stänga av den automatiska omritningen
+ och istället begära omritning (med <code>update()</code>) när
+ alla <code>setDot</code>-anrop är klara.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>update</code>:</td><td>avgör om vi skall ha eller inte ha automatisk
+ uppdatering (standardvärdet är <code>true</code>).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>update</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör att hela fönstret uppdateras (användbart om vi stängt av
+ den automatiska uppdateringen).</td></tr>
+</td></tr></table>

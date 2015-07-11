@@ -1,0 +1,152 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av DotWindow</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>DotWindow</code></b></font></td></tr><tr><td>import se.lth.cs.pt.dots.events.DotWindow;</td></tr></table><p>
+<p>Detta är ett slags <code>DotWindow</code> som utöver de vanliga <a
+   href="se.lth.cs.pt.dots.DotWindow_.html"><code>DotWindow</code>-operationerna</a>
+   även låter oss registrera vilka händelser vi vill att vårt program
+   skall ta hand om. Exempel på användning (se även klassen <a
+   href="se.lth.cs.pt.dots.events.GameEvent.html"><code>GameEvent</code></a>):</p>
+
+ <pre>
+   DotWindow w = ...;
+   ...
+   w.checkKeys(true,false,false);
+   w.checkMouse(true,false,false,false,false);
+   w.timeStep(100);
+   for (;;) {
+       GameEvent event = w.getNextEvent();
+       switch (event.getKind()) {
+       case GameEvent.KEY_PRESSED:
+           // Användaren har tryckt ner en tangent
+           keyPressed(event.getKey());
+           break;
+       case GameEvent.MOUSE_CLICKED:
+           // Användaren har klickat med musen
+           mouseClicked(event.getX(), event.getY());
+           break;
+       case GameEvent.TICK:
+           // Det har gått ytterligare 100 millisekunder
+           tick();
+           break;
+       }
+   }
+ </pre>
+
+ <p>Ritoperationerna dokumenteras <a
+  href="se.lth.cs.pt.dots.DotWindow_.html">här</a>.</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>DotWindow</b>&nbsp;&nbsp;(int xSize, int ySize, int dotSize)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett nytt <code>DotWindow</code> med given bredd, höjd
+ och prickstorlek.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>xSize</code>:</td><td>antal prickar i x-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>ySize</code>:</td><td>antal prickar i y-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dotSize</code>:</td><td>prickarnas bredd och höjd, i pixlar.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>checkKeys</b>(boolean press, boolean release, boolean type)</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilken slags tangentbordshändelser vi är intresserade av.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>press</code>:</td><td>om <code>true</code> skall vi lyssna på tangenttryck</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>release</code>:</td><td>om <code>true</code> skall vi lyssna på tangentsläpp</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>type</code>:</td><td>om <code>true</code> skall vi lyssna på
+ tangenttryck (dvs en fullbordad tangenttryckning).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>checkMouse</b>(boolean click, boolean press, boolean release, boolean drag, boolean move)</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilka mushändelser vi är intresserade av.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>click</code>:</td><td>om <code>true</code> skall vi bry oss om musklick,
+ dvs att användaren trycker ner och släpper upp musknappen
+ ganska snabbt på ett och samma ställe</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>press</code>:</td><td>om <code>true</code> skall vi bry oss om ifall
+   användaren trycker ned musknappen</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>release</code>:</td><td>om <code>true</code> skall vi bry oss om ifall
+   användaren släpper upp musknappen</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>drag</code>:</td><td>om <code>true</code> skall vi bry oss om ifall
+   användaren flyttar musen med musknappen nedtryckt.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>move</code>:</td><td>om <code>true</code> skall vi bry oss om ifall
+   användaren flyttar musen utan att trycka på någon knapp.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>timeStep</b>(int ms)</code></td></tr>
+<tr><td width="50"></td><td>Gör att vi får nya <code>GameEvent</code>-objekt med jämna
+ tidsintervaller när vi anropar <code>getNextEvent()</code>.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>ms</code>:</td><td>antalet millisekunder mellan varje
+    <code>GameEvent</code>, om antalet millisekunder är 0, eller
+    negativt, så kommer fönstret att sluta generera
+    <code>GameEvent</code>-objekt tills vi åter anropar
+    operationen med ett positivt värde</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>startClock</b>(int ms)</code></td></tr>
+<tr><td width="50"></td><td>Startar klockan.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>ms</code>:</td><td>antalet millisekunder mellan varje tick.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>stopClock</b>()</code></td></tr>
+<tr><td width="50"></td><td>Stoppar klockan.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>GameEvent <b>getNextEvent</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nästa händelse som vi sagt att vi är intresserade av
+ (beroende på om och hur vi anropat operationerna
+ <code>checkKeys</code>, <code>checkMouse</code> och
+ <code>timeStep</code>.</td></tr>
+</td></tr></table>

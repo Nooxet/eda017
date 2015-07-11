@@ -1,0 +1,285 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av GameTemplate</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Den abstrakta klassen <code>GameTemplate</code></b></font></td></tr><tr><td>import se.lth.cs.pt.game.graphics.GameTemplate;</td></tr></table><p>
+<p><p>Klassen <code>GameTemplate</code> är en mall för händelsestyrda
+ program i ett <a
+ href="se.lth.cs.pt.graphics.events.GraphicsWindow.html"><code>GraphicsWindow</code></a>
+ - den som utvidgar klassen <code>GameTemplate</code> behöver bara
+ implementera några få operationer (se nedan) för att få ett
+ fungerande program.</p>
+
+ <p>De operationer som kan överskuggas dokumenteras nedan - ett
+ enkelt exempel på program är följande:
+
+ <pre>
+import se.lth.cs.pt.graphics.*;
+import se.lth.cs.pt.graphics.events.*;
+import se.lth.cs.pt.game.graphics.*;
+import java.util.Random;
+
+class SampleGame extends GameTemplate {
+
+    protected final int
+        LEFT_ARROW = 37,
+        UP_ARROW = 38,
+        RIGHT_ARROW = 39,
+        DOWN_ARROW = 40,
+        QUIT_KEY = 81;
+
+    protected Sprite sprite;
+    protected int width, height;
+    protected double x, y;
+    protected Random rng = new Random();
+
+    public void setup() {
+        width = 500;
+        height = 500;
+        x = width/2;
+        y = height/2;
+        w = new GraphicsWindow(width,height);
+        sprite = new Sprite("ball.png", x, y);
+        w.add(sprite);
+        w.checkKeys(true,false,false);
+        w.checkMouse(true,false,false,false,false);
+        w.timeStep(1000);
+    }
+
+    public void keyPressed(char key, int code) {
+        // Om vi vill använda pil-tangenter bryr vi oss
+        // inte om key-värdet:
+        switch (code) {
+        case LEFT_ARROW:
+            x -= 10;
+            break;
+        case RIGHT_ARROW:
+            x += 10;
+            break;
+        case UP_ARROW:
+            y -= 10;
+            break;
+        case DOWN_ARROW:
+            y += 10;
+            break;
+        case QUIT_KEY:
+            quit();
+            break;
+        }
+        redraw();
+    }
+
+    public void mouseClicked(double xPos, double yPos, int button) {
+        if (button == 1) {   // vänsterknappen
+            x = xPos;
+            y = yPos;
+            redraw();
+        }
+    }
+
+    public void tick() {
+        x += rng.nextDouble()*20-10;
+        y += rng.nextDouble()*20-10;
+        redraw();
+    }
+
+    protected void redraw() {
+        sprite.moveTo(x,y);
+    }
+}
+ </pre>
+
+  <p>Programmet ovan kan startas med anropet:</p>
+
+ <pre>
+new SampleGame().run();
+</pre></p>
+
+   <p><b>Några viktiga saker att lägga märke till:</b></p>
+
+   <ul><li>Du ärver ett attribut <code>w</code>, och får <em>inte</em>
+   ha något eget attribut med samma namn!</p></li>
+
+   <li>De operationer som du överskuggar måste
+   <code>public</code>-deklareras.</p></li>
+
+  </ul></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>run</b>()</code></td></tr>
+<tr><td width="50"></td><td>Startar programmet (kan inte överskuggas).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>quit</b>()</code></td></tr>
+<tr><td width="50"></td><td>Gör att programmet avslutas.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>timeToQuit</b>()</code></td></tr>
+<tr><td width="50"></td><td>Avgör om det är dags att avsluta (kan överskuggas, om du inte
+ hellre vill anropa <code>quit()</code>, se ovan). Denna metod
+ skall du inte anropa själv, den anropas automatiskt i
+ händelseloopen -- den skall returnera <code>true</code> när det
+ är dags att avsluta programmet, <code>false</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setup</b>()</code></td></tr>
+<tr><td width="50"></td><td>Initierar attribut. Måste skapa ett fönster <code>w</code>, och
+ meddela vilka händelser som skall hanteras. Skall även starta
+ klockan (<code>w.timeStep</code>), om vi vill ha diskreta
+ tiddsteg. <em>Observera att du inte får ha något eget fönster
+ <code>w</code> i din subklass (ett sådant fönster skulle
+ 'överskugga' det fönster som <code>GameTemplate</code> använder
+ för att vänta på händelser).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>tick</b>()</code></td></tr>
+<tr><td width="50"></td><td>Anropas när ett tidssteg har gått (initieras genom att skriva
+ <code>w.timeStep(tidssteg)</code> i <code>setup</code>).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyPressed</b>(char ch, int code)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när en tangent har tryckts ned (kräver att
+ <code>w.checkKeys</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>key</code>:</td><td>'tecknet' på den tangent som trycktes ned.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>code</code>:</td><td>tangent-kod för den aktuella tangenten.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyReleased</b>(char ch, int code)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när en tangent har släppts upp (kräver att
+ <code>w.checkKeys</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>key</code>:</td><td>'tecknet' på den tangent som trycktes ned.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>code</code>:</td><td>tangent-kod för den aktuella tangenten.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>keyTyped</b>(char ch, int code)</code></td></tr>
+<tr><td width="50"></td><td>Anropas efter fullbordad tangent-tryckning (kräver att
+ <code>w.checkKeys</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>key</code>:</td><td>'tecknet' på den tangent som trycktes ned.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>code</code>:</td><td>tangent-kod för den aktuella tangenten.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>mouseClicked</b>(double x, double y, int button)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när användaren har klickat med musen (kräver att
+ <code>w.checkMouse</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>button</code>:</td><td>musknapp (1 = vänsterknappen)</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>mousePressed</b>(double x, double y, int button)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när användaren har tryckt ned musen (kräver att
+ <code>w.checkMouse</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>button</code>:</td><td>musknapp (1 = vänsterknappen)</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>mouseReleased</b>(double x, double y, int button)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när användaren har släppt upp musen (kräver att
+ <code>w.checkMouse</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>button</code>:</td><td>musknapp (1 = vänsterknappen)</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>mouseDragged</b>(double x, double y, int button)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när användaren har släpat musen (kräver att
+ <code>w.checkMouse</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>button</code>:</td><td>musknapp (1 = vänsterknappen)</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>mouseMoved</b>(double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Anropas när användaren har flyttat musen (kräver att
+ <code>w.checkMouse</code> har initierats på rätt sätt i
+ <code>setup()</code>).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat</td></tr>
+</table></td></tr>
+</td></tr></table>

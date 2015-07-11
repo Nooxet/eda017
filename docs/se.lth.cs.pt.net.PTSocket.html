@@ -1,0 +1,86 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av PTSocket</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>PTSocket</code></b></font></td></tr><tr><td>import se.lth.cs.pt.net.PTSocket;</td></tr></table><p>
+<p>Med hjälp av klassen <code>PTSocket</code> kan vi låta två datorer
+ kommunicera med varandra på ett enkelt sätt.
+
+ <pre>
+   String url = "hacke-1.student.lth.se";
+   int port = 1729;
+   PTSocket socket = new PTSocket(url, port);
+   if (socket.connect()) {
+       socket.out.println("Det första meddelandet...");
+   }
+   while (socket.isOpen()) {
+       String msg = socket.in.nextLine();
+       socket.out.println("... mitt nästa meddelande ...");
+   }
+ </pre>
+
+
+ En av de båda datorer som sätt i förbindelse med varandra måste ta
+ initiativet, och skicka det första meddelandet -- lämpligt är att
+ låta den av de båda datorerna som får <code>true</code> tillbaka
+ från <code>connect</code>-anropet skicka det första meddelandet.</p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>PTSocket</b>&nbsp;&nbsp;(String url, int port)</code></td></tr>
+<tr><td width="50"></td><td>Skapar förbindelse på given port till en dator med given url.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>url</code>:</td><td>den andra datorns adress</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>port</code>:</td><td>aktuellt portnummer</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>connect</b>()</code></td></tr>
+<tr><td width="50"></td><td>Startar förbindelsen, returnerar <code>true</code> om detta
+       program skall skicka första meddelandet, <code>false</code>
+       annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>isOpen</b>()</code></td></tr>
+<tr><td width="50"></td><td>Testar om förbindelsen fortfarande är öppen. Denna operation är
+       ännu inte implementerad -- just nu returnerar den alltid
+       <code>true</code>.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>close</b>()</code></td></tr>
+<tr><td width="50"></td><td>Stänger förbindelsen. Denna operation är ännu inte
+       implementerad -- just nu returnerar den alltid
+       <code>true</code>.</td></tr>
+</td></tr></table>

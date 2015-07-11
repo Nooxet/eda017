@@ -1,0 +1,70 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av MouseEvent</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>MouseEvent</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.listeners.MouseEvent;</td></tr></table><p>
+<p>Beskriver en mushändelse av något slag.</p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>GraphicsWindow <b>getSource</b>()</code></td></tr>
+<tr><td width="50"></td><td>Talar om vilket fönster som händelsen inträffade i.</td></tr>
+<tr><td width="50"></td><td>Returnerar det aktuella fönstret.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för händelsen (alltid ett heltal).</td></tr>
+<tr><td width="50"></td><td>Returnerar x-koordinaten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger y-koordinaten för händelsen (alltid ett heltal).</td></tr>
+<tr><td width="50"></td><td>Returnerar y-koordinaten.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getButton</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger knapp-numret. På en Linux-dator kan värdet vara:
+ <ul>
+   <li>0: ingen knapp</li>
+   <li>1: vänster musknapp</li>
+   <li>2: höger knapp</li>
+   <li>3: tredje knappen (om den finns)</li>
+ </ul></td></tr>
+<tr><td width="50"></td><td>Returnerar knappens nummer.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>long <b>getTime</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger tidpunkten för händelsen.</td></tr>
+<tr><td width="50"></td><td>Returnerar Returnerar tid mätt i millisekunder (sedan 1 januari
+ 1970).</td></tr>
+</td></tr></table>

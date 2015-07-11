@@ -1,0 +1,115 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Text</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Text</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.Text;</td></tr></table><p>
+<p>Beskriver en text som skall skrivas ut i ett fönster:
+
+ <pre>
+  GraphicsWindow w = new GraphicsWindow(500,500);
+  Text text = new Text(300, 200, "Text som skall skrivas ut");
+  w.add(text);
+  text.rotate(30);
+  text.move(30, 50);
+  text.setMessage("Ny text..."); </pre>
+
+ <p>En text kan utföra alla operationer som en <a
+ href="se.lth.cs.pt.graphics.Shape.html"><code>Shape</code></a> kan
+ utföra, och dessutom nedanstående:</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Text</b>&nbsp;&nbsp;(double x, double y, String msg)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett nytt <code>Text</code>-objekt.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>msg</code>:</td><td>textmeddelandet.</td></tr>
+</table></td></tr>
+</td></tr></table>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Text</b>&nbsp;&nbsp;(double x, double y, String msg, String fontName, int style, int size)</code></td></tr>
+<tr><td width="50"></td><td>Skapar ett nytt <code>Text</code>-objekt med ett givet
+ typsnitt. Typsnittet kan vara exempelvis:
+ <ul>
+ <li><code>Text.SERIF</code>,</li>
+ <li><code>Text.SANS_SERIF</code>,</li>
+ <li><code>Text.MONOSPACED</code></li>
+ </ul>
+ och stilen kan vara exempelvis:
+ <ul>
+ <li><code>Text.PLAIN</code>,</li>
+ <li><code>Text.BOLD</code>,</li>
+ <li><code>Text.ITALIC</code></li>
+ </ul></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>msg</code>:</td><td>textmeddelandet.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>fontName</code>:</td><td>namnet på typsnittet.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>style</code>:</td><td>stilen på texten.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>size</code>:</td><td>storleken på texten (i punkter).</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setMessage</b>(String msg)</code></td></tr>
+<tr><td width="50"></td><td>Sätter meddelandet till en given sträng.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>msg</code>:</td><td>det nya meddelandet.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setFont</b>(String fontName, int style, int size)</code></td></tr>
+<tr><td width="50"></td><td>Ändrar typsnittet.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>fontName</code>:</td><td>namnet på typsnittet (se konstruktorn ovan).</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>style</code>:</td><td>stilen på texten (se konstruktorn ovan).</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>size</code>:</td><td>storleken på texten (i punkter).</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>setColor</b>(Color color)</code></td></tr>
+<tr><td width="50"></td><td>Sätter färgen på texten.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>color</code>:</td><td>färgen.</td></tr>
+</table></td></tr>
+</td></tr></table>

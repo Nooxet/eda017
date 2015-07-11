@@ -1,0 +1,87 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av IO</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>IO</code></b></font></td></tr><tr><td>import se.lth.cs.pt.io.IO;</td></tr></table><p>
+<p>Man kan inte skapa något <code>IO</code>-objekt. Istället
+ använder man klassen för att skapa <code>Scanner</code>- eller
+ <code>PrintStream</code>-objekt på följande sätt:
+ <pre>
+ Scanner keyboard = IO.keyboardScanner();
+ PrintStream console = IO.consoleWriter();
+ int n = keyboard.nextInt();
+ console.println("Värdet på n är " + n);
+
+ // Kopiera texten i input.txt till output.txt:
+ Scanner in = IO.fileScanner("input.txt");
+ PrintStream out = IO.fileWriter("output.txt");
+ while (in.hasNextLine()) {
+     out.println(in.nextLine());
+ }
+ out.flush();
+ out.close();
+ </pre></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Klassmetoder</b></font></td>
+  </tr>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>Scanner <b>keyboardScanner</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger ett <code>Scanner</code>-objekt som läser från
+ tangentbordet - du kan få samma effekt genom att skriva:
+ <pre>
+       Scanner s = new Scanner(System.in);</pre></td></tr>
+<tr><td width="50"></td><td>Returnerar en referens till ett <code>Scanner</code>-objekt.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>Scanner <b>fileScanner</b>(String filename)</code></td></tr>
+<tr><td width="50"></td><td>Ger ett <code>Scanner</code>-objekt som läser från en given
+ textfil, returnerar <code>null</code> om ingen sådan fil finns.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>filename</code>:</td><td>namnet på filen vi skall läsa från.</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar en referens till ett <code>Scanner</code>-objekt, eller
+ <code>null</code> (om filen inte finns).</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>PrintStream <b>consoleWriter</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger en referens till ett <code>PrintStream</code>-objekt som
+ skriver ut i kommandofönstret.</td></tr>
+<tr><td width="50"></td><td>Returnerar en referens till ett <code>PrintStream</code>-objekt.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>PrintStream <b>fileWriter</b>(String filename)</code></td></tr>
+<tr><td width="50"></td><td>Ger en referens till ett <code>PrintStream</code>-objekt som
+ skriver ut till en fil med ett givet namn.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>filename</code>:</td><td>namn på filen vi skall skriva till.</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar en referens till ett <code>PrintStream</code>-objekt.</td></tr>
+</td></tr></table>

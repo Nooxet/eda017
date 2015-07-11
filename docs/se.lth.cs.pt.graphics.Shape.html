@@ -1,0 +1,165 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Shape</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Den abstrakta klassen <code>Shape</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.Shape;</td></tr></table><p>
+<p>Denna klass är lite speciell, du kan inte skapa
+ <code>Shape</code>-objekt, den beskriver bara de operationer som är
+ gemensamma för olika slags figurer (<code>Rectangle</code>,
+ <code>Oval</code>, etc). Du kan alltså använda operationerna nedan
+ på alla figurklasser, som i följande exempel:
+
+<pre>
+  GraphicsWindow w = ...
+  Rectangle rect = new Rectangle(100, 100, 80, 40);
+  w.add(rect);
+  rect.move(40, -20);
+  rect.rotate(-15);
+  Oval oval = new Oval(250, 300, 50, 50);
+  w.add(oval);
+  oval.moveTo(300, 100);
+  Text text = new Text(300, 200, "Text som skall skrivas ut");
+  w.add(text);
+  text.rotate(30);
+  text.move(30, 50);
+  text.setMessage("Ny text...");
+  GraphicsWindow w = ...
+  Sprite ball = new Sprite("ball.png", 200, 200);
+  w.add(ball);
+  w.move(5, -5);</pre>
+
+<p>De olika figurklasserna är alltså:
+<ul>
+
+<li><p><a
+href="se.lth.cs.pt.graphics.Rectangle.html"><code>Rectangle</code></a>:
+beskriver en liten rektangel.</p></li>
+
+<li><p><a
+href="se.lth.cs.pt.graphics.Oval.html"><code>Oval</code></a>:
+beskriver en liten rektangel.</p></li>
+
+<li><p><a
+href="se.lth.cs.pt.graphics.Text.html"><code>Text</code></a>:
+beskriver en liten rektangel.</p></li>
+
+<li><p><a
+href="se.lth.cs.pt.graphics.Sprite.html"><code>Sprite</code></a>:
+beskriver en liten rektangel.</p></li>
+
+<p><b>Observera:</b> Alla figurer i ett fönster ligger ovanpå
+bakgrunden, och alla linjer som ritas med <code>drawLine</code> ligger
+i bakgrunden, så eventuella linjer kommer att täckas av figurerna.</p>
+
+</ul></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getX</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger x-koordinaten för figurens mittpunkt.</td></tr>
+<tr><td width="50"></td><td>Returnerar x-koordinaten (som ett <code>double</code>-värde).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getY</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger y-koordinaten för figurens mittpunkt.</td></tr>
+<tr><td width="50"></td><td>Returnerar y-koordinaten (som ett <code>double</code>-värde).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>covers</b>(double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Avgör om figuren täcker en given punkt (om figuren aldrig
+ ritats i ett fönster så täcker den inga punkter).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>punktens x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>punktens y-koordinat.</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om punkten täcks, <code>false</code>
+ annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>moveTo</b>(GraphicsWindow_ w, double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Flyttar figurens mittpunkt till nya koordinater i ett givet
+ fönster.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>w</code>:</td><td>det fönster som figuren skall ritas i.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>ny x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>ny y-koordinat.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>moveTo</b>(double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Flyttar figurens mittpunkt till nya koordinater (i samma
+ fönster som tidigare).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>ny x-koordinat.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>ny y-koordinat.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>move</b>(double dx, double dy)</code></td></tr>
+<tr><td width="50"></td><td>Flyttar figurens mittpunkt en given sträcka i samma fönster som
+ tidigare.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dx</code>:</td><td>förflyttning i x-led.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>dy</code>:</td><td>förflyttning i y-led.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>rotate</b>(double angle)</code></td></tr>
+<tr><td width="50"></td><td>Roterar figuren ett givet antal grader runt sin mittpunkt.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>angle</code>:</td><td>antalet grader figuren skall roteras.</td></tr>
+</table></td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>rotateTo</b>(double angle)</code></td></tr>
+<tr><td width="50"></td><td>Sätter figurens rotationsvinkel till ett givet antal grader
+ (från sitt ursprungstillstånd).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>angle</code>:</td><td>antalet grader figuren skall vara vriden.</td></tr>
+</table></td></tr>
+</td></tr></table>

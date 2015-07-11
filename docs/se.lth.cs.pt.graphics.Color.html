@@ -1,0 +1,132 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Color</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Color</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.Color;</td></tr></table><p>
+<p>Beskriver de färger som vi kan använda i figurer som ritas i ett <a
+ href="se.lth.cs.pt.graphics.GraphicsWindow_.html"><code>GraphicsWindow</code></a>.<p>
+
+ Färgerna beskrivs av vilka nyanser av rött, grönt och blått de har.
+ Färgen vit innehåller maximalt av alla tre färgerna, färgen svart
+ innehåller ingen av färgerna. Om vi blandar de tre färgerna kan vi
+ få en mängd (16 miljoner) olika färgnyanser -- exempelvis består
+ gult av (255,255,0), dvs det är en blandning av rött och grönt,
+ utan något som helst inslag av blått.<p>
+
+ Det finns ett antal färdigdefinierade färger:
+ <ul>
+  <li><code>Color.WHITE</code>
+  <li><code>Color.BLACK</code>
+  <li><code>Color.RED</code>
+  <li><code>Color.GREEN</code>
+  <li><code>Color.BLUE</code>
+ </ul>
+
+ Ett enkelt exempel på hur färgerna kan blandas och användas i ett
+ <code>GraphicsWindow</code>:
+
+ <pre>
+    Color blue = Color.BLUE;
+    Color yellow = new Color(255,255,0);
+    GraphicsWindow w = new GraphicsWindow(500,500);
+    Rectangle rect = new Rectangle(150,150,40,40);
+    rect.setBorderColor(blue);
+    rect.setFillColor(yellow);
+    w.add(rect);
+ </pre></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Color</b>&nbsp;&nbsp;(int red, int green, int blue)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny färg med givet inslag av rött, grönt och
+ blått.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>red</code>:</td><td>nyansen rött (0-255)</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>green</code>:</td><td>nyansen grönt (0-255)</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>blue</code>:</td><td>nyansen blått (0-255)</td></tr>
+</table></td></tr>
+</td></tr></table>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Color</b>&nbsp;&nbsp;(String htmlColor)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny färg med given html-kodning (dvs en sträng på
+ formatet <code>#RRGGBB"</code>, där <code>RR</code>,
+ <code>GG</code> och <code>BB</code> är hexadecimala värden på
+ nyanserna av rött, grönt och blått (dvs de är tal i intervallet
+ <code>00</code>..<code>FF</code>). Man kan utelämna
+ <code>#</code>-tecknet i färgkodningen.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>htmlColor</code>:</td><td>html-kodningen</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getRed</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nyansen rött i denna färg (0-255).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getGreen</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nyansen grönt i denna färg (0-255).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>getBlue</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger nyansen blått i denna färg (0-255).</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>boolean <b>equals</b>(Object other)</code></td></tr>
+<tr><td width="50"></td><td>Jämför om färgen är exakt lik en annan färg. Observera att vi inte bör
+ jämföra färger med hjälp av <code>==</code>-operationen:
+     <pre>
+    Color c1 = new Color(10,20,30);
+    Color c2 = new Color(10,20,30);
+    if (c1 == c2) {
+        // denna test misslyckas, eftersom c1 och c2 visserligen beskriver
+        // samma färg, men är olika färg-objekt
+    }
+    if (c1.equals(c2)) {
+        // denna test lyckas
+    }
+     </pre></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>other</code>:</td><td>den andra färgen</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar <code>true</code> om de båda färgerna är lika, <code>false</code> annars.</td></tr>
+</td></tr></table>

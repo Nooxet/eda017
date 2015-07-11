@@ -1,0 +1,103 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av Sprite</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>Sprite</code></b></font></td></tr><tr><td>import se.lth.cs.pt.graphics.Sprite;</td></tr></table><p>
+<p>En <code>Sprite</code> är en liten figur som du kan flytta runt på
+ skärmen på samma sätt som du kan flytta alla sorts <a
+ href="se.lth.cs.pt.graphics.Shape.html">figurer</a> - de kan
+ dessutom utföra operationerna nedan.</p>
+
+<pre>
+  GraphicsWindow w = ...
+  Sprite ball = new Sprite("ball.png", 200, 200);
+  w.add(ball);
+  ball.move(5, -5);</pre>
+
+<p>Utöver nedanstående operationer kan du alltså även använda alla de
+som finns i klassen <a
+href="se.lth.cs.pt.graphics.Shape.html"><code>Shape</code></a>.</p></p>
+<table border="1" cellspacing="0" width="100%">
+  <tr bgcolor="#CCCCFF">
+  <td colspan=2><font size="+2"> <b>Konstruktorer</b></font></td>
+ </tr>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Sprite</b>&nbsp;&nbsp;(String filename, double x, double y)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny sprite med en given figur. Figuren måste vara i
+ någon av filformaten <code>.png</code>, <code>.jpg</code> eller
+ <code>.gif</code>. Om du använder <code>.png</code> kan du
+ använda transparens i bilden.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>filename</code>:</td><td>namnet på den fil som innehåller figuren.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>x-koordinaten (för mittpunkten).</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>y-koordinaten (för mittpunkten).</td></tr>
+</table></td></tr>
+</td></tr></table>
+  <tr bgcolor="#F8F8F5">
+  <td>
+      <table border="0">
+        <tr>
+          <td colspan="2"><code><b>Sprite</b>&nbsp;&nbsp;(String filename)</code></td></tr>
+<tr><td width="50"></td><td>Skapar en ny sprite med en given figur. Figuren måste vara i
+ någon av filformaten <code>.png</code>, <code>.jpg</code> eller
+ <code>.gif</code>. Om du använder <code>.png</code> kan du
+ använda transparens i bilden. Figuren hamnar automatiskt med
+ mittpunkten i koordinaterna (0,0) (dvs i övre vänstra hörnet på
+ det fönster som du så småningom lägger in figuren i).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>filename</code>:</td><td>namnet på den fil som innehåller figuren.</td></tr>
+</table></td></tr>
+</td></tr></table>
+</td></tr></table><table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Metoder</b></font></td>
+  </tr>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getWidth</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger figurens bredd.</td></tr>
+<tr><td width="50"></td><td>Returnerar bredden.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>getHeight</b>()</code></td></tr>
+<tr><td width="50"></td><td>Ger figurens höjd.</td></tr>
+<tr><td width="50"></td><td>Returnerar höjden.</td></tr>
+</td></tr></table>
+<tr bgcolor="#FCFBD5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>scale</b>(double width, double height)</code></td></tr>
+<tr><td width="50"></td><td>Skalar om figuren så att den får ny höjd och bredd.
+ Omskalningen kan ta lite tid (upp till i storleksordningen en
+ sekund), och om figuren visas i ett fönster så försvinner den
+ under tiden).</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>width</code>:</td><td>ny höjd.</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>height</code>:</td><td>ny bredd.</td></tr>
+</table></td></tr>
+</td></tr></table>

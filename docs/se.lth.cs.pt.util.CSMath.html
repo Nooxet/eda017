@@ -1,0 +1,119 @@
+<!doctype html public "-//IETF//DTD HTML//EN">
+<! Genererad av Christians doclet ptdoc>
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
+<style>
+pre {
+display: block;
+padding: 10px;
+color: #583315;
+background: #FFF8F3;
+font-size: 1.1em;
+border-top: 2px solid #FDC986;
+border-bottom: 2px solid #FDC986;
+}
+</style>
+<title>Specifikation av CSMath</title></head>
+<body><table bgcolor="#FFFF88" border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr><td><font size="+3"><b>Klassen <code>CSMath</code></b></font></td></tr><tr><td>import se.lth.cs.pt.util.CSMath;</td></tr></table><p>
+<p>En klass med några aritmetiska operationer som saknas, eller enligt
+ Christian får ologiska värden, i Javas standardklasser.<p>
+
+ Observera att samtliga operationer är klassoperationer, man skapar
+ alltså aldrig några <code>CSMath</code>-objekt.<p>
+
+ Några exempel på hur <code>mod</code> och <code>div</code> skiljer
+ sig från motsvarande java-operatorer (% och /):
+ <ul>
+   <li>För positiva heltal ger <code>mod</code> och % samma resultat:
+       <code>CSMath.mod(7,4)</code> = 3, 7 % 4 = 3
+   <li>För negativa heltal skiljer de sig åt:
+       <code>CSMath.mod(-1,4)</code> = 3, -1 % 4 = -1.
+   <li>För positiva heltal ger <code>div</code> och / samma resultat:
+       <code>CSMath.div(7,4)</code> = 1, 7 / 4 = 1
+   <li>För negativa heltal skiljer de sig åt:
+       <code>CSMath.div(-1,4)</code> = -1, -1 / 4 = 0.
+ </ul></p>
+<table border="1" cellspacing="0" width="100%">
+ <tr bgcolor="#CCCCFF">
+  <td colspan="2"><font size="+2"><b>Klassmetoder</b></font></td>
+  </tr>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>mod</b>(int x, int y)</code></td></tr>
+<tr><td width="50"></td><td>Beräknar <i>x</i> mod <i>y</i> enligt definitionen i
+ 'Concrete Mathematics' av Graham, Knuth och Patashnik.<p>
+
+ För positiva tal motsvarar mod-funktionen Javas rest-funktion
+ (%), för negativa tal motsvarar den att man sluter tallinjen
+ och räknar åt vänster istället.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>täljare</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>nämnare</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar <i>x</i> mod <i>y</i>, ett tal i intervallet
+ [<i>0</i>..<i>y</i>[ om <i>y</i> är positivt,
+ ]<i>y</i>..<i>0</i>] om <i>y</i> är negativt, och <i>x</i> själv
+ om <i>y=0</i>.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>div</b>(int x, int y)</code></td></tr>
+<tr><td width="50"></td><td>Ger heltalsdivision som överensstämmer med mod-funktionen, dvs en division
+ som gör att uttrycket<p>
+ <center>
+ <code>n == m*CSMath.div(n,m) + CSMath.mod(n,m)</code>
+ </center><p>
+ uppfylls.<p></td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td>täljare</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td>nämnare</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar <i>x/y</i>, dock inte symmetrisk kring 0:an, som vanlig heltalsdivision är!</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>int <b>bracket</b>(boolean condition)</code></td></tr>
+<tr><td width="50"></td><td>Ger Iversons 'bracket'-operation, dvs översätter ett logiskt
+ villkor till 0 eller 1.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>condition</code>:</td><td>villkoret.</td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar <code>1</code> om villkoret är sant, <code>0</code> annars.</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>double <b>arctan</b>(double y, double x)</code></td></tr>
+<tr><td width="50"></td><td>Beräknar arctan(y/x) och ger ett värde i det halvöppna
+ intervallet [0..2*pi[. Om x == 0 får vi värdet pi om y > 0, och
+ värdet 3*pi/2 om y < 0. Om både x och y är 0 får vi värdet 0.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>y</code>:</td><td></td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>x</code>:</td><td></td></tr>
+</table></td></tr>
+<tr><td width="50"></td><td>Returnerar ett värde i intervallet [0..2*pi[</td></tr>
+</td></tr></table>
+<tr bgcolor="#F8F8F5">
+<td>
+<table border="0">
+<tr>
+<td colspan="2"><code>void <b>main</b>(String[] args)</code></td></tr>
+<tr><td width="50"></td><td>Ger några exempel på beräkningar med <code>mod</code> och
+ <code>div</code>.</td></tr>
+<tr><td width="50"></td><td><table border="0">
+<tr><td colspan="2">Parametrar:</td></tr>
+<tr><td width="5"></td><td align="right" cellpadding="3"><code>args</code>:</td><td>Eventualla kommandoradsparametrar.</td></tr>
+</table></td></tr>
+</td></tr></table>
